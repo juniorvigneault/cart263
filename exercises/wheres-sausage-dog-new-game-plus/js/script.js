@@ -2,27 +2,27 @@
 
 // Where is the sausage dog activity
 
-const NUM_ANIMAL_IMAGES = 10;
-const NUM_ANIMALS = 100;
+const NUM_ANIMAL_IMAGES = 1;
+const NUM_ANIMALS = 2000;
 
 let animalImages = [];
 let animals = [];
 
-let sausageDogImage = undefined;
-let sausageDog = undefined;
+// let sausageDogImage = undefined;
+// let sausageDog = undefined;
 
 
 function preload() {
   for (let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
-    let animalImage = loadImage(`assets/images/animal${i}.png`)
+    let animalImage = loadImage(`assets/images/animal.png`)
     animalImages.push(animalImage);
   }
 
-  sausageDogImage = loadImage(`assets/images/sausage-dog.png`)
+  // sausageDogImage = loadImage(`assets/images/sausage-dog.png`)
 }
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(windowWidth, windowHeight);
 
   // Create the animals
   for (let i = 0; i < NUM_ANIMALS; i++) {
@@ -33,21 +33,26 @@ function setup() {
     animals.push(animal);
   }
 
-  let x = random(0, width);
-  let y = random(0, height);
-  sausageDog = new SausageDog(x, y, sausageDogImage);
+  // let x = random(0, width);
+  // let y = random(0, height);
+  // sausageDog = new SausageDog(x, y, sausageDogImage);
 }
 
 function draw() {
-  background(255,200,0);
+  background(255);
 
   for(let i = 0; i < animals.length; i++) {
     animals[i].update();
   }
 
-  sausageDog.update();
+  // sausageDog.update();
 }
 
 function mousePressed() {
-  sausageDog.mousePressed();
+  // sausageDog.mousePressed();
+}
+
+// resizes the canvas so that things appear when making bigger
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
