@@ -29,6 +29,7 @@ let handImage = undefined;
 let flySound = undefined;
 let starSound = undefined;
 let starSoundPlaying = false;
+let stab = undefined;
 
 // starting state
 let state = `title`;
@@ -52,6 +53,8 @@ function preload() {
   flySound = loadSound(`assets/sounds/flysound.mp3`)
 
   starSound = loadSound(`assets/sounds/star.mp3`)
+
+  stab = loadSound(`assets/sounds/stab.mp3`)
 }
 
 function setup() {
@@ -90,6 +93,7 @@ function mousePressed() {
   if (state === `title`) {
     state = `game`;
     flySound.loop();
+    stab.play();
   }
 
 }
