@@ -133,7 +133,7 @@ function game() {
 // making the golden fly being picked up
   goldenFly.mousePressed();
 // if golden fly is picked up and given to the frog, fly dissapears and frog becomes rainbowy
-  if (goldenFly.found && dist(goldenFly.x, goldenFly.y, froggy.x, froggy.y) < 100) {
+  if (goldenFly.notEaten && goldenFly.found && dist(goldenFly.x, goldenFly.y, froggy.x, froggy.y) < 100) {
     goldenFly.notEaten = false;
     froggy.eating = true;
     if (starSoundPlaying === false) {
@@ -143,7 +143,6 @@ function game() {
       setTimeout(function() {
         froggy.eating = false;
       }, 3500);
-
     }
   }
 }
