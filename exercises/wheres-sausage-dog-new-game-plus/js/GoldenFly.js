@@ -1,16 +1,30 @@
-class SausageDog extends Animal {
+class GoldenFly extends Fly {
   constructor(x, y, image) {
     super(x, y, image);
 
     this.found = false;
-    this.rotationSpeed = 0.25;
+    this.notEaten = true;
   }
 
 update() {
   super.update();
+  this.display();
 
   if (this.found) {
-    this.angle += this.rotationSpeed;
+    this.x = mouseX;
+    this.y = mouseY;
+
+  }
+}
+
+display() {
+  if (this.notEaten) {
+  push()
+  imageMode(CENTER);
+  translate(this.x, this.y);
+  rotate(this.angle);
+  image(this.image, 0, 0);
+  pop()
   }
 }
 
