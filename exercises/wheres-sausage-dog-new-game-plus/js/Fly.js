@@ -74,7 +74,7 @@ class Fly {
     }
   }
 
-// if you click on golden fly!
+// if you click on fly!
   mousePressed() {
     if (mouseX > this.x - this.image.width / 2 &&
       mouseX < this.x + this.image.width / 2 &&

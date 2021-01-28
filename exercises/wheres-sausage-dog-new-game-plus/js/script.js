@@ -115,6 +115,8 @@ function title() {
   goldenFly.update();
   // display some flies in title screen
   displayFlies(NUM_FLIES_TITLE);
+  // make the frog appear apear
+  // froggy.update();
 }
 // game function part
 function game() {
@@ -130,6 +132,15 @@ function game() {
   if (goldenFly.found && dist(goldenFly.x, goldenFly.y, froggy.x, froggy.y) < 100) {
     goldenFly.notEaten = false;
     froggy.eating = true;
+    if (starSoundPlaying === false) {
+      starSound.play();
+      starSoundPlaying = true;
+      // making the froggy become rainbow for the duration of Star sound
+      setTimeout(function() {
+        froggy.eating = false;
+      }, 3500);
+
+    }
   }
 }
 
@@ -144,9 +155,10 @@ function createFlies(numberFlies) {
   }
 }
 
-// function to display flies (used both in title and game with diff numbers)
+// function to display flies and pick them up (used both in title and game with diff numbers)
 function displayFlies(numberFlies) {
   for (let i = 0; i < numberFlies; i++) {
     flies[i].update();
+    // flies[i].mousePressed();
   }
 }
