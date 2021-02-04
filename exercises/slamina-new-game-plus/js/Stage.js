@@ -1,23 +1,23 @@
 class Stage {
 
-  constructor(w, h, image) {
+  constructor(w, h) {
     this.width = w;
     this.height = h;
     this.x = width / 2;
     this.y = height - this.height / 2;
     this.strokeWeight = 1;
     this.fill = {
-      r: 200,
-      g: 200,
-      b: 200
+      r: 255,
+      g: 0,
+      b: 0
     }
 
-    // congratulation gif
-    this.congratulationsImage = image;
-    this.congratulationsx = width/2;
-    this.congratulationsy = height/2;
-    this.congratulationsSize = 1040;
-    this.congratulationsSize2 = 520;
+    // // congratulation gif
+    // this.congratulationsImage = image;
+    // this.congratulationsx = width/2;
+    // this.congratulationsy = height/2;
+    // this.congratulationsSize = 1040;
+    // this.congratulationsSize2 = 520;
   }
 
   // display the stage
@@ -30,8 +30,8 @@ class Stage {
     pop();
   }
 
-  congratulationsGif() {
-    imageMode(CENTER);
-    image(this.congratulationsImage, this.congratulationsx, this.congratulationsy, this.congratulationsSize, this.congratulationsSize2);
-  }
+  // congratulationsGif() {
+  //   imageMode(CENTER);
+  //   image(this.congratulationsImage, this.congratulationsx, this.congratulationsy, this.congratulationsSize, this.congratulationsSize2);
+  // }
 }

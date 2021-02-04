@@ -1,6 +1,6 @@
 class Balloon {
 
-  constructor(x, y, note) {
+  constructor(x, y) {
     // balloon
     this.x = x;
     this.y = y;
@@ -26,6 +26,8 @@ class Balloon {
     this.attach5 = undefined;
     this.attach6 = undefined;
   }
+
+
 
   // make the balloon move according to position
   gravity(force) {
