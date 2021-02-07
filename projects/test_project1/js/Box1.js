@@ -1,11 +1,21 @@
 class Box1 {
-  constructor(x, y, w, h) {
-    this.body = Bodies.rectangle(x, y, w, h);
-    this.pos = this.body.position;
-    this.angle = this.body.angle;
+  constructor(x, y, w, h, world) {
+    let options = {
+      // friction against the rectangles 0 = hey slide off each other
+      // 1 = they stick more together
+      friction: 1,
+      // restitution = bodies bouncing off 0 = not bouncing 1 = bouncing
+      restitution: 0
+    }
+    this.body = Bodies.rectangle(x, y, w, h, options);
     this.w = w;
     this.h = h;
-    this.add2World = World.add(engine.world, box1)
+    World.add(world, this.body);
+    this.fill = {
+      r: random(0,250),
+      g: 100,
+      b: random(60,80)
+    }
   }
 
   update() {
@@ -14,7 +24,12 @@ class Box1 {
 
   display() {
     push();
-    translate(this.pos.x, this.pos.y);
+    let pos = this.body.position;
+    let angle = this.body.angle;
+    rectMode(CENTER);
+    translate(pos.x, pos.y);
+    rotate(angle);
+    fillHsluv(this.fill.r, this.fill.g, this.fill.b)
     rect(0,0, this.w, this.h)
     pop();
   }

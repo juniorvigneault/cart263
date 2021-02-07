@@ -19,6 +19,10 @@ let world;
 
 // box variable
 let box1;
+let boxes = [];
+
+// ground variable
+let ground;
 
 function setup() {
   createCanvas(1000, 1000)
@@ -28,17 +32,33 @@ function setup() {
   Engine.run(engine);
   // create the physics in the world
   world = engine.world;
-  // // create a rectangle (box1) as a body
-  // box1 = Bodies.rectangle(200, 100, 80, 80);
-  // // add box1 in the world
-  // World.add(engine.world, box1);
+  // options for bodies
+  let options = {
+    isStatic: true
+  };
+  // create ground
+  ground = Bodies.rectangle(200,height,width,100, options)
+  World.add(world, ground);
+}
 
-  box1 = new Box1(200, 100, 50, 50);
-
+function mouseDragged() {
+  boxes.push(new Box1(mouseX, mouseY, 30, 30, world));
 }
 
 function draw() {
   background(0);
-  box1.update();
-  // rect(box1.position.x, box1.position.y, 80, 80)
+  for (let i = 0; i < boxes.length; i++ ) {
+  boxes[i].update();
+}
+}
+
+// functions to translate RGB to HSLuv for fill and stroke
+function fillHsluv(h, s, l) {
+  const rgb = hsluv.hsluvToRgb([h, s, l]);
+  fill(rgb[0] * 255, rgb[1] * 255, rgb[2] * 255);
+}
+
+function strokeHsluv(h, s, l) {
+  const rgb = hsluv.hsluvToRgb([h, s, l]);
+  stroke(rgb[0] * 255, rgb[1] * 255, rgb[2] * 255);
 }
