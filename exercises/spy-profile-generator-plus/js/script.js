@@ -94,7 +94,7 @@ Weakness: ${spyProfile.weakness}`;
   fillHsluv(19, 100, 67);
   rectMode(CENTER);
   strokeWeight(2);
-  rect(width / 2, height / 2, 430, 430);
+  rect(width / 2, height / 2, 500, 500);
   pop();
 
   push();
