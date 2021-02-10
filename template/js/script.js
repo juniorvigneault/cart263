@@ -10,6 +10,13 @@ function draw() {
 }
 
 
+
+
+
+
+
+
+
 // functions to translate RGB to HSLuv for fill and stroke
 function fillHsluv(h, s, l) {
   const rgb = hsluv.hsluvToRgb([h, s, l]);
