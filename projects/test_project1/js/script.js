@@ -23,6 +23,7 @@ let boxes = [];
 
 // ground variable
 let ground;
+let grounds = [];
 
 function setup() {
   createCanvas(1000, 1000)
@@ -32,23 +33,40 @@ function setup() {
   Engine.run(engine);
   // create the physics in the world
   world = engine.world;
-  // options for bodies
-  let options = {
-    isStatic: true
-  };
-  // create ground
-  ground = Bodies.rectangle(200,height,width,100, options)
-  World.add(world, ground);
+  // create grounds
+  // grounds.push(new Ground(400, 400, 600, 50, world, 0.3));
+  // grounds.push(new Ground(700, 800, 600, 50, world, - 0.3));
+  grounds.push(new Ground(width/2, height, 300, 50, world, 0));
+  grounds.push(new Ground(0, height/2, 1000, 100, world, 1.5));
+  grounds.push(new Ground(width, height/2, 1000, 100, world, - 1.5));
+
+
+
+
+
 }
 
 function mouseDragged() {
-  boxes.push(new Box1(mouseX, mouseY, 30, 30, world));
+  boxes.push(new Box1(mouseX, mouseY, random(1,100), world));
 }
 
 function draw() {
-  background(0);
+  // background(255);
   for (let i = 0; i < boxes.length; i++ ) {
   boxes[i].update();
+  if (boxes[i].offScreen()) {
+    // remove boxes from the world so the physics engine stops taking care of them when they leave screen
+   boxes[i].removeFromWorld();
+    // remove box from the array
+    boxes.splice(i, 1);
+    // prevents the skipping of a box when removed from the array by backing up 1
+    i--;
+
+  }
+}
+// draw the ground
+  for (let i = 0; i < grounds.length; i++ ) {
+  grounds[i].update();
 }
 }
 
