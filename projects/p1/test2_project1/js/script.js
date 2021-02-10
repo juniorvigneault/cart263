@@ -1,12 +1,20 @@
 "use strict";
 
+let froggy;
+
+
+function preload() {
+
+  froggy = loadAnimation(`assets/images/froggy/1.png`,`assets/images/froggy/3.png`)
+}
 
 function setup() {
-  createCanvas(1000, 1000)
+  createCanvas(500, 500)
 }
 
 function draw() {
-  background(0);
+  background(255);
+  animation(froggy, width/2, height/2)
 }
 
 
