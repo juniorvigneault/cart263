@@ -8,6 +8,8 @@ let handpose = undefined;
 let predictions = [];
 // the Bubble
 let bubble = undefined;
+// number of bubbles popped
+let score = 0;
 
 function setup() {
   createCanvas(640, 480);
@@ -41,6 +43,7 @@ function draw() {
   predictionsInfo();
   displayBubble();
   moveBubble();
+  displayScore();
 }
 
 
@@ -64,6 +67,8 @@ function predictionsInfo() {
     if (d < bubble.size / 2) {
       bubble.x = random(width);
       bubble.y = height;
+      score += 1;
+
     }
     // display pin on index finger
     // draw needle
@@ -100,4 +105,13 @@ function moveBubble() {
     bubble.x = random(width);
     bubble.y = height;
   }
+}
+
+function displayScore() {
+  push();
+  fill(255);
+  textSize(20);
+  textAlign(CENTER);
+  text(score, width/2, height/2)
+  pop();
 }
