@@ -7,9 +7,20 @@ let handpose = undefined;
 // the current set of predictions
 let predictions = [];
 // the Bubble
-let bubble = undefined;
+let balloons = [];
+// number of balloons
+let numBalloons = undefined;
+// offset so the balloons start off screen
+let balloonOffSet = - 200;
 // number of bubbles popped
 let score = 0;
+// balloon pop sound
+let popSFX;
+
+
+function preload() {
+  popSFX = loadSound(`assets/sounds/pop.mp3`)
+}
 
 function setup() {
   createCanvas(640, 480);
@@ -28,22 +39,22 @@ function setup() {
     // console.log(results);
     predictions = results;
   });
-  // bubble object
-  bubble = {
-    x: random(width),
-    y: height,
-    size: 100,
-    vx: 0,
-    vy: -2
-  }
+
+  // create balloons
+  let numBalloons = random(1,10);
+  for (let i = 0; i < numBalloons; i++) {
+let x = random(0, width);
+let y = height - balloonOffSet;
+let balloon = new Balloon(x, y);
+balloons.push(balloon);
+}
 }
 
 function draw() {
-  background(0);
+  background(0,200,255);
   predictionsInfo();
-  displayBubble();
-  moveBubble();
   displayScore();
+  displayBalloons();
 }
 
 
@@ -62,13 +73,17 @@ function predictionsInfo() {
     let baseY = base[1];
 
     // check if the bubble is popped
-
-    let d = dist(tipX, tipY, bubble.x, bubble.y);
-    if (d < bubble.size / 2) {
-      bubble.x = random(width);
-      bubble.y = height;
+    for (let i = 0; i < balloons.length; i++) {
+      let balloon = balloons[i];
+    let d = dist(tipX, tipY, balloon.x, balloon.y);
+    if (d < balloon.size / 2) {
+      balloon.x = random(width);
+      balloon.y = height;
+      // make the score up by 1 when balloon popped
       score += 1;
-
+      // trigger balloon pop sound
+      popSFX.play();
+    }
     }
     // display pin on index finger
     // draw needle
@@ -88,24 +103,15 @@ function predictionsInfo() {
   }
 }
 
-function displayBubble() {
-  push();
-  fill(0, 0, 255);
-  noStroke();
-  ellipse(bubble.x, bubble.y, bubble.size);
-  pop();
-}
-
-function moveBubble() {
-  // move Bubble
-  bubble.x = bubble.x += bubble.vx;
-  bubble.y = bubble.y += bubble.vy;
-  // wrap bubble to the bottom of the screen when goin off screen
-  if (bubble.y < 0) {
-    bubble.x = random(width);
-    bubble.y = height;
+function displayBalloons() {
+  for (let i = 0; i < balloons.length; i++) {
+    let balloon = balloons[i];
+    if (balloon.active)
+    balloon.move();
+    balloon.display();
   }
 }
+
 
 function displayScore() {
   push();

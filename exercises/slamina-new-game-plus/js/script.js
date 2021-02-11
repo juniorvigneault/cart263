@@ -50,6 +50,7 @@ function setup() {
   let balloon = new Balloon(x, y);
   balloons.push(balloon);
   }
+  
   // create stage
   stage = new Stage(width, 100);
 }
@@ -114,7 +115,7 @@ function congratulations() {
   }
 }
 
-// switching between states 
+// switching between states
 
 function stateSwitch() {
   if (state === `title`) {
