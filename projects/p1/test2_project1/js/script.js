@@ -1,29 +1,33 @@
 "use strict";
 
-let froggy;
 
+// canvas variable
+let cnvX = 700;
+let cnvY = 700;
+
+let title;
+
+let featureSFX;
+let blood;
+let gunshotSFX;
+let babySFX;
 
 function preload() {
-
-  froggy = loadAnimation(`assets/images/froggy/1.png`,`assets/images/froggy/3.png`)
+  featureSFX = loadSound(`assets/sounds/feature.mp3`);
+  blood = loadImage(`assets/images/blood.png`);
+  gunshotSFX = loadSound(`assets/sounds/gunshot.mp3`);
+  babySFX = loadSound(`assets/sounds/baby_shot_me_down.mp3`);
 }
 
 function setup() {
-  createCanvas(500, 500)
+  createCanvas(cnvX, cnvY)
+  title = new Title(blood);
+  featureSFX.play();
 }
 
 function draw() {
-  background(255);
-  animation(froggy, width/2, height/2)
+  title.update();
 }
-
-
-
-
-
-
-
-
 
 // functions to translate RGB to HSLuv for fill and stroke
 function fillHsluv(h, s, l) {
@@ -34,9 +38,4 @@ function fillHsluv(h, s, l) {
 function strokeHsluv(h, s, l) {
   const rgb = hsluv.hsluvToRgb([h, s, l]);
   stroke(rgb[0] * 255, rgb[1] * 255, rgb[2] * 255);
-}
-
-// resizes the canvas
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
 }
