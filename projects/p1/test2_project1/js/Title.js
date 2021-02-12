@@ -83,8 +83,8 @@ class Title {
     this.theTexty = this.theTexty += this.vy2;
     this.playTexty = this.playTexty += this.vy2;
 
-    this.vx = random(-2,2);
-    this.killTextx = this.killTextx + this.vx;
+    // this.vx = random(-10,10);
+    // this.killTextx = this.killTextx + this.vx;
 
     if (this.killTexty < height * 0.345) {
       this.vy1 = 0;
