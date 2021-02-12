@@ -1,10 +1,10 @@
 class Title {
-  constructor(blood) {
+  constructor() {
 
-    this.killTextx = width * 0.59;
+    this.killTextx = width * 0.65;
     this.killTexty = (height * 0.35) * 3.5;
 
-    this.billTextx = width * 0.599;
+    this.billTextx = width * 0.655;
     this.billTexty = (height * 0.60) * 2.5;
 
     this.theTextx = width * 0.5;
@@ -12,23 +12,21 @@ class Title {
     this.playTextx = width * 0.58;
     this.playTexty = (height * 0.75) * 2.6;
 
-    this.vx;
+    this.vx = random(-1,1);
     this.vy1 = -0.8;
     this.vy2 = -0.8;
-    this.bloodImage = blood;
-    this.bloodSpatter = false;
 
     // play gunshot
     this.gunshot = setTimeout(function() {
       gunshotSFX.play();
       babySFX.play();
-      this.bloodSpatter = true;
     }, 17600);
   }
 
   update() {
     this.display();
     this.moveTitle();
+    this.filmGrain();
   }
 
 
@@ -76,13 +74,6 @@ class Title {
     rect(500, 0, 100, height);
     pop();
 
-    // blood spatter when gun is shot
-    if (this.bloodSpatter) {
-    push();
-    imageMode(CENTER);
-    image(this.bloodImage, width * 0.3, height * 0.3);
-    pop();
-    }
   }
 
   moveTitle() {
@@ -92,6 +83,9 @@ class Title {
     this.theTexty = this.theTexty += this.vy2;
     this.playTexty = this.playTexty += this.vy2;
 
+    this.vx = random(-2,2);
+    this.killTextx = this.killTextx + this.vx;
+
     if (this.killTexty < height * 0.345) {
       this.vy1 = 0;
     }
@@ -99,4 +93,17 @@ class Title {
       this.vy2 = 0;
     }
   }
+
+filmGrain(){
+let grainNumber = random(0,4)
+for (let i =0; i < grainNumber; i++) {
+let x = random(0,width);
+let y = random(0,height);
+let size = random(1,2);
+stroke(255);
+strokeWeight(size);
+point(x,y);
+}
+}
+
 }

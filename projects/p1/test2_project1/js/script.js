@@ -21,7 +21,7 @@ function preload() {
 
 function setup() {
   createCanvas(cnvX, cnvY)
-  title = new Title(blood);
+  title = new Title();
   featureSFX.play();
 }
 
