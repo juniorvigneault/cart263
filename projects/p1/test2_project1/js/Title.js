@@ -9,24 +9,26 @@ class Title {
 
     this.theTextx = width * 0.5;
     this.theTexty = (height * 0.75) * 2.6;
+    this.playText = `Play`;
     this.playTextx = width * 0.58;
     this.playTexty = (height * 0.75) * 2.6;
 
-    this.vx = random(-1,1);
+    this.vx = random(-1, 1);
     this.vy1 = -0.8;
     this.vy2 = -0.8;
 
     // play gunshot
-    this.gunshot = setTimeout(function() {
-      gunshotSFX.play();
-      babySFX.play();
-    }, 17600);
+    // this.gunshot = setTimeout(function() {
+    //   gunshotSFX.play();
+    //   babySFX.play();
+    // }, 17600);
   }
 
   update() {
     this.display();
     this.moveTitle();
-    this.filmGrain();
+    this.mouseOverPlay();
+    // this.filmGrain();
   }
 
 
@@ -35,7 +37,7 @@ class Title {
     push();
     fillHsluv(89, 100, 87);
     noStroke();
-    rect(0,0,cnvX,cnvY)
+    rect(0, 0, cnvX, cnvY)
     pop();
 
     // Kill Bill title
@@ -44,9 +46,10 @@ class Title {
     textFont(`Impact`)
     textAlign(RIGHT, CENTER);
     textSize(200);
-    this.killTextx = width * 0.58
+    this.killTextx = width * 0.58;
+    // this.killTextx = random(width * 0.55, width * 0.66)
     // killTexty = height * 0.35
-    this.billTextx = width * 0.588
+    this.billTextx = width * 0.588;
     // billTexty = height * 0.60
     text(`KILL`, this.killTextx, this.killTexty);
     text(`BILL`, this.billTextx, this.billTexty);
@@ -60,12 +63,7 @@ class Title {
     text(`The`, this.theTextx, this.theTexty);
     pop();
 
-    push();
-    textFont(`Impact`)
-    textAlign(RIGHT, CENTER);
-    textSize(30);
-    text(`Play`, this.playTextx, this.playTexty);
-    pop();
+
 
     // black stripe right of screen
     push();
@@ -94,16 +92,36 @@ class Title {
     }
   }
 
-filmGrain(){
-let grainNumber = random(0,4)
-for (let i =0; i < grainNumber; i++) {
-let x = random(0,width);
-let y = random(0,height);
-let size = random(1,2);
-stroke(255);
-strokeWeight(size);
-point(x,y);
-}
-}
+  filmGrain() {
+    let grainNumber = random(0, 4)
+    for (let i = 0; i < grainNumber; i++) {
+      let x = random(0, width);
+      let y = random(0, height);
+      let size = random(1, 2);
+      stroke(255);
+      strokeWeight(size);
+      point(x, y);
+    }
+  }
+
+  mouseOverPlay(){
+    let w = textWidth(this.playText);
+    let h = textAscent();
+  if (mouseX > this.playTextx - w / 2 &&
+    mouseX < this.playTextx + w / 2 &&
+    mouseY > this.playTexty - h / 2 &&
+    mouseY < this.playTexty + h / 2) {
+    fill(255, 0, 0);
+  }
+  else {
+    fill(0, 0, 0);
+  }
+  push();
+  textFont(`Impact`)
+  textAlign(RIGHT, CENTER);
+  textSize(30);
+  text(this.playText, this.playTextx, this.playTexty);
+  pop();
+  }
 
 }

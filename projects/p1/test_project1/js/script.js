@@ -5,7 +5,7 @@
 // https://www.youtube.com/watch?v=urR596FsU68
 
 
-// module aliases
+// module aliases // create engine variable
 let Engine = Matter.Engine;
 // let Render = Matter.Render
 let World = Matter.World;
@@ -51,7 +51,7 @@ function mouseDragged() {
 }
 
 function draw() {
-  // background(255);
+  background(255);
   for (let i = 0; i < boxes.length; i++ ) {
   boxes[i].update();
   if (boxes[i].offScreen()) {
