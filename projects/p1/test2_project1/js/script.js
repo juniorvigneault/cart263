@@ -17,6 +17,14 @@ let world;
 let cnvX = 600;
 let cnvY = 780;
 
+// blood variables for the title poster
+let blood;
+let bloodDrops = [];
+
+// block varibles for static ground
+let block;
+let blocks = [];
+
 let currentState;
 let title;
 let act1;
@@ -50,18 +58,19 @@ function setup() {
   // create the physics in the world
   world = engine.world;
 
-  // currentState = new Title();
-  currentState = new Act1(width/2, 610, 700, 80, world, 0, donaldPNG, jordanPNG);
+  currentState = new TitlePoster();
+  // currentState = new Act1(width/2, 610, 700, 80, world, 0, donaldPNG, jordanPNG);
   // currentState = new Test();
-
-
-
-
   // featureSFX.play();
 }
 
 function draw() {
   currentState.update();
+  // console.log(bloodDrops.push())
+}
+
+function mouseDragged() {
+  boxes.push(new Box1(mouseX, mouseY, random(1,100), world));
 }
 
 // functions to translate RGB to HSLuv for fill and stroke
@@ -77,4 +86,8 @@ function strokeHsluv(h, s, l) {
 
 function mousePressed(){
   currentState.mousePressed();
+}
+
+function mouseDragged() {
+  currentState.mouseDragged();
 }

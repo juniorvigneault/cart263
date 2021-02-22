@@ -1,4 +1,4 @@
-class Title {
+class OldTitle {
   constructor() {
 
     this.killTextx = width * 0.65;
