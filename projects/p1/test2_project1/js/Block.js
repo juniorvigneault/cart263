@@ -4,8 +4,8 @@ class Block {
       // option that makes the ground static
       isStatic: true,
       angle: a,
-      friction: 0,
-      restitution: 0
+      friction: 1,
+      restitution: 1
     };
     this.body = Bodies.rectangle(x, y, w, h, options);
     this.w = w;

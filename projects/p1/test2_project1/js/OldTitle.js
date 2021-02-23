@@ -65,12 +65,7 @@ class OldTitle {
 
 
 
-    // black stripe right of screen
-    push();
-    fill(0);
-    noStroke();
-    rect(500, 0, 100, height);
-    pop();
+
 
   }
 

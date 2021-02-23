@@ -38,6 +38,10 @@ let babySFX;
 let donaldPNG;
 let jordanPNG;
 
+// title poster
+let bloodPNG;
+let writtenBy;
+
 function preload() {
   featureSFX = loadSound(`assets/sounds/feature.mp3`);
   gunshotSFX = loadSound(`assets/sounds/gunshot.mp3`);
@@ -46,6 +50,10 @@ function preload() {
   // crowd
   donaldPNG = loadImage(`assets/images/donald.png`)
   jordanPNG = loadImage(`assets/images/jordan.png`)
+
+  // title poster
+  bloodPNG = loadImage(`assets/images/blood.png`)
+  writtenBy = loadImage(`assets/images/writtenby.png`)
 }
 
 function setup() {
@@ -58,19 +66,17 @@ function setup() {
   // create the physics in the world
   world = engine.world;
 
-  currentState = new TitlePoster();
+  currentState = new TitlePoster(bloodPNG);
   // currentState = new Act1(width/2, 610, 700, 80, world, 0, donaldPNG, jordanPNG);
   // currentState = new Test();
   // featureSFX.play();
+
+
 }
 
 function draw() {
   currentState.update();
   // console.log(bloodDrops.push())
-}
-
-function mouseDragged() {
-  boxes.push(new Box1(mouseX, mouseY, random(1,100), world));
 }
 
 // functions to translate RGB to HSLuv for fill and stroke
@@ -86,8 +92,4 @@ function strokeHsluv(h, s, l) {
 
 function mousePressed(){
   currentState.mousePressed();
-}
-
-function mouseDragged() {
-  currentState.mouseDragged();
 }

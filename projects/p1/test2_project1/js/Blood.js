@@ -1,16 +1,20 @@
 class Blood {
-  constructor(x, y, r, world) {
+  constructor(x, y, w, h, world) {
     // Dripping blood
     let options = {
       // friction against the rectangles 0 = hey slide off each other
       // 1 = they stick more together
-      friction: 1,
+      friction: 0,
       // restitution = bodies bouncing off 0 = not bouncing 1 = bouncing
-      restitution: 0
+      restitution: 1
     }
-    this.body = Bodies.circle(x, y, r, options);
+    this.body = Bodies.rectangle(x, y, h, w, options);
     // converts radius to diameter
-    this.r = r * 2;
+    // this.r = r * 2;
+
+    this.w = w;
+    this.h = h;
+
     World.add(world, this.body);
     this.fill = {
       h: 12,
@@ -30,12 +34,12 @@ class Blood {
     push();
     let pos = this.body.position;
     let angle = this.body.angle;
-    ellipseMode(CENTER);
+    rectMode(CENTER);
     noStroke();
     translate(pos.x, pos.y);
     rotate(angle);
     fillHsluv(this.fill.h, this.fill.s, this.fill.l)
-    ellipse(0, 0, this.r)
+    rect(0, 0, this.w, this.h)
     pop();
   }
 
