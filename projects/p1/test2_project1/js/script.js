@@ -37,23 +37,35 @@ let babySFX;
 // crowd
 let donaldPNG;
 let jordanPNG;
+let lindaPNG;
 
 // title poster
 let bloodPNG;
 let writtenBy;
 
+// act 1
+let act1PNG;
+let curtainPNG;
+let curtain2PNG;
+
 function preload() {
   featureSFX = loadSound(`assets/sounds/feature.mp3`);
   gunshotSFX = loadSound(`assets/sounds/gunshot.mp3`);
   babySFX = loadSound(`assets/sounds/baby_shot_me_down.mp3`);
-
+  // Act1
   // crowd
   donaldPNG = loadImage(`assets/images/donald.png`)
   jordanPNG = loadImage(`assets/images/jordan.png`)
+  lindaPNG = loadImage(`assets/images/linda.png`)
+  // theatre assets
+  curtainPNG = loadImage(`assets/images/curtain.png`)
+  // curtain2PNG = loadImage(`assets/images/curtain2.png`)
+
+  // act1 title
+  act1PNG = loadImage(`assets/images/act1.png`);
 
   // title poster
   bloodPNG = loadImage(`assets/images/blood.png`)
-  writtenBy = loadImage(`assets/images/writtenby.png`)
 }
 
 function setup() {
@@ -66,12 +78,10 @@ function setup() {
   // create the physics in the world
   world = engine.world;
 
-  currentState = new TitlePoster(bloodPNG);
-  // currentState = new Act1(width/2, 610, 700, 80, world, 0, donaldPNG, jordanPNG);
+  // currentState = new TitlePoster(bloodPNG);
+  currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
   // currentState = new Test();
   // featureSFX.play();
-
-
 }
 
 function draw() {
