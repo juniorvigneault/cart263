@@ -4,10 +4,12 @@ class BlackMamba {
     let options = {
       // friction against the rectangles 0 = hey slide off each other
       // 1 = they stick more together
-      friction: 1,
+      friction: 0.2,
       // restitution = bodies bouncing off 0 = not bouncing 1 = bouncing
-      restitution: 1
-    }
+      restitution: 0,
+      density: 0.0019,
+      frictionAir: 0.2
+        }
     this.body = Bodies.rectangle(x, y, h, w, options);
     // converts radius to diameter
     // this.r = r * 2;
@@ -16,6 +18,7 @@ class BlackMamba {
     this.h = h;
 
     World.add(world, this.body);
+    console.log(this.body)
   }
 
   update() {
@@ -34,9 +37,32 @@ class BlackMamba {
     fill(200,200,0)
     rect(0, 0, this.w, this.h)
     pop();
+
+
   }
 
   moveActor() {
-    Matter.Body.setVelocity(this.body, {x: 0, y: -5})
+    if(keyIsDown(RIGHT_ARROW)) {
+      Matter.Body.applyForce(this.body, this.body.position, {x: .007, y: 0})
+      man.changeAnimation(`rightWalk`)    }
+    else if (keyIsDown(LEFT_ARROW)) {
+      Matter.Body.applyForce(this.body, this.body.position, {x: -.007, y: 0})
+      man.changeAnimation(`leftWalk`);
+    }
+    // else if (keyIsDown(UP_ARROW)) {
+    //   Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: -.3})
+    //   man.changeAnimation(`jumpUp`)
+    // }
+    else {
+      man.changeAnimation(`straight`)
+    }
+  }
+
+  keyPressed() {
+    if (keyCode === UP_ARROW) {
+      Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: -.3})
+      man.changeAnimation(`jumpUp`)
+      console.log(man.changeAnimation(`jumpUp`))
+    }
   }
 }

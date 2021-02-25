@@ -11,18 +11,31 @@ class Act1 extends Theatre {
       isMoving: true
     }
 
-    this.blackMamba = new BlackMamba(300, 200, 50, 160, world);
+    this.x = 300;
+    this.y = 500;
+
+    this.blackMamba = new BlackMamba(this.x, this.y, 50, 130, world);
 
   }
 
   update() {
     background(0);
-
+    // middle spot
     push();
+    let x1 = map(mouseX, 0, 600,0,600)
+    let x2 = map(mouseX, 0, 600,0,600)
     fillHsluv(99,44,94)
     noStroke();
-    triangle(300, -100, 180, 600, 420, 600)
+    triangle(300, -100, x1, 600, x2 + 300, 600)
     pop();
+    // right spot
+    // push();
+    // let x3 = map(x1, 0, 600, 0,600)
+    // let x4 = map(x2, 0, 600,0,600)
+    // fillHsluv(99,44,94)
+    // noStroke();
+    // triangle(600, -100, x3, 600, x4 + 300, 600)
+    // pop();
 
     this.blackMamba.update();
 
@@ -32,6 +45,7 @@ class Act1 extends Theatre {
     // fill(0)
     // rect(300, -50, 300, 300)
     // pop();
+    this.blackMamba.moveActor()
 
     super.update();
     super.curtainLift();
@@ -50,6 +64,10 @@ class Act1 extends Theatre {
     //   this.moveact1()
     // }
   }
+//  SOLUTION BY PIPPIN ======
+  // setTimeout(() => {
+  //   this.act1.moving = true;
+  //  }, 4000);
 
 
   // moveact1(){
@@ -64,9 +82,11 @@ class Act1 extends Theatre {
   //
   // }
 
-
+  keyPressed() {
+    this.blackMamba.keyPressed()
+  }
 
   mousePressed(){
-    this.blackMamba.moveActor()
+
   }
 }

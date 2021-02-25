@@ -48,6 +48,10 @@ let act1PNG;
 let curtainPNG;
 let curtain2PNG;
 
+// animation test
+let man;
+let myAnimation;
+
 function preload() {
   featureSFX = loadSound(`assets/sounds/feature.mp3`);
   gunshotSFX = loadSound(`assets/sounds/gunshot.mp3`);
@@ -65,11 +69,24 @@ function preload() {
   act1PNG = loadImage(`assets/images/act1.png`);
 
   // title poster
-  bloodPNG = loadImage(`assets/images/blood.png`)
+  bloodPNG = loadImage(`assets/images/blood.png`);
+
+  // right walk Test
+  man = createSprite(200,200)
+
+  myAnimation = man.addAnimation(`straight`, `assets/images/test/1.png`, `assets/images/test/6.png`);
+  man.addAnimation(`rightWalk`, `assets/images/test/01.png`, `assets/images/test/06.png`)
+  man.addAnimation(`leftWalk`, `assets/images/test/001.png`, `assets/images/test/006.png`)
+  man.addAnimation(`jumpUp`, `assets/images/test/jump01.png`, `assets/images/test/jump07.png`)
+  myAnimation.looping = false;
+
+
+
 }
 
 function setup() {
   createCanvas(cnvX, cnvY);
+
   // MATTER.JS
   // create engine
   engine = Engine.create();
@@ -82,11 +99,13 @@ function setup() {
   currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
   // currentState = new Test();
   // featureSFX.play();
+
 }
 
 function draw() {
   currentState.update();
   // console.log(bloodDrops.push())
+  drawSprites();
 }
 
 // functions to translate RGB to HSLuv for fill and stroke
@@ -101,5 +120,10 @@ function strokeHsluv(h, s, l) {
 }
 
 function mousePressed(){
+
   currentState.mousePressed();
+}
+
+function keyPressed() {
+  currentState.keyPressed()
 }

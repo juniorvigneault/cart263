@@ -7,9 +7,9 @@ class Theatre {
       angle: a,
       // friction against the rectangles 0 = hey slide off each other
       // 1 = they stick more together
-      friction: 1,
+      friction: 0,
       // restitution = bodies bouncing off 0 = not bouncing 1 = bouncing
-      restitution: 1
+      restitution: 0
     };
     // create the body of stage
     this.body = Bodies.rectangle(x, y, w, h, options);
@@ -90,7 +90,7 @@ class Theatre {
       color: {
         h: 350,
         s: 2,
-        l: 3
+        l: 5
       }
     };
 
