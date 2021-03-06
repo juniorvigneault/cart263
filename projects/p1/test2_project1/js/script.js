@@ -52,10 +52,30 @@ let curtain2PNG;
 let man;
 let myAnimation;
 
+// ambiance sounds
+let roomToneSFX;
+
+let stepSFX;
+
+// sound Library
+let sfxLibrary = {theBride:[]};
+
+let reverb;
+
 function preload() {
-  featureSFX = loadSound(`assets/sounds/feature.mp3`);
-  gunshotSFX = loadSound(`assets/sounds/gunshot.mp3`);
-  babySFX = loadSound(`assets/sounds/baby_shot_me_down.mp3`);
+  console.log(soundData)
+
+  // sound load
+  sfxLibrary.theBride[0] = {act1 : []};
+  for (let i = 0; i < soundData.theBride[0].act1.length; i++) {
+    let name = soundData.theBride[0].act1[i].name;
+    let sound = loadSound(soundData.theBride[0].act1[i].path);
+    sfxLibrary.theBride[0].act1[name] = sound;
+}
+
+  // featureSFX = loadSound(`assets/sounds/feature.mp3`);
+  // gunshotSFX = loadSound(`assets/sounds/gunshot.mp3`);
+  // babySFX = loadSound(`assets/sounds/baby_shot_me_down.mp3`);
   // Act1
   // crowd
   donaldPNG = loadImage(`assets/images/donald.png`)
@@ -72,13 +92,21 @@ function preload() {
   bloodPNG = loadImage(`assets/images/blood.png`);
 
   // right walk Test
-  man = createSprite(200,200)
+  man = createSprite(-100, -100);
 
   myAnimation = man.addAnimation(`straight`, `assets/images/test/1.png`, `assets/images/test/6.png`);
-  man.addAnimation(`rightWalk`, `assets/images/test/01.png`, `assets/images/test/06.png`)
-  man.addAnimation(`leftWalk`, `assets/images/test/001.png`, `assets/images/test/006.png`)
+  man.addAnimation(`rightWalk`, `assets/images/test/001.png`, `assets/images/test/012.png`)
+  // man.addAnimation(`leftWalk`, `assets/images/test/001.png`, `assets/images/test/006.png`)
   man.addAnimation(`jumpUp`, `assets/images/test/jump01.png`, `assets/images/test/jump07.png`)
-  myAnimation.looping = false;
+  // myAnimation.looping = false;
+
+
+  // ambiance sounds
+  roomToneSFX = loadSound(`assets/sounds/ambiance/roomtone.wav`)
+
+  // step sound
+  stepSFX = loadSound(`assets/sounds/the_bride/steps.wav`)
+
 
 
 
@@ -86,6 +114,12 @@ function preload() {
 
 function setup() {
   createCanvas(cnvX, cnvY);
+  userStartAudio();
+  // reverb setup
+  reverb = new p5.Reverb();
+  reverb.process(roomToneSFX, 3,15)
+  reverb.process(stepSFX, 3,15)
+
 
   // MATTER.JS
   // create engine
@@ -120,7 +154,12 @@ function strokeHsluv(h, s, l) {
 }
 
 function mousePressed(){
-
+  // responsiveVoice.speak("it's mercy, compassion and forgiveness I lack. Not Rationality!", "UK English Female", {
+  //   pitch: 1.2,
+  //   rate: 1,
+  //   volume: 0.5
+  // })
+  // sfxLibrary.theBride[0].act1.its_not_my_intention.play();
   currentState.mousePressed();
 }
 

@@ -14,20 +14,27 @@ class Act1 extends Theatre {
     this.x = 300;
     this.y = 500;
 
-    this.blackMamba = new BlackMamba(this.x, this.y, 50, 130, world);
+    this.theBride = new TheBride(this.x, this.y, 50, 100, world);
 
+    this.roomToneSFXIsPlaying = false;
   }
 
   update() {
     background(0);
     // middle spot
     push();
-    let x1 = map(mouseX, 0, 600,0,600)
-    let x2 = map(mouseX, 0, 600,0,600)
+    let x1 = map(this.theBride.body.position.x, 0, 600,0,600)
+    let x2 = map(this.theBride.body.position.x, 0, 600,0,600)
     fillHsluv(99,44,94)
     noStroke();
-    triangle(300, -100, x1, 600, x2 + 300, 600)
+    triangle(300, -100, x1 - 150, 600, x2 + 150, 600)
     pop();
+
+    // play room tone
+    if (this.roomToneSFXIsPlaying === false) {
+      roomToneSFX.loop();
+      this.roomToneSFXIsPlaying = true;
+    }
     // right spot
     // push();
     // let x3 = map(x1, 0, 600, 0,600)
@@ -37,7 +44,7 @@ class Act1 extends Theatre {
     // triangle(600, -100, x3, 600, x4 + 300, 600)
     // pop();
 
-    this.blackMamba.update();
+    this.theBride.update();
 
     // push();
     // rectMode(CENTER);
@@ -45,7 +52,7 @@ class Act1 extends Theatre {
     // fill(0)
     // rect(300, -50, 300, 300)
     // pop();
-    this.blackMamba.moveActor()
+    this.theBride.moveActor()
 
     super.update();
     super.curtainLift();
@@ -83,7 +90,11 @@ class Act1 extends Theatre {
   // }
 
   keyPressed() {
-    this.blackMamba.keyPressed()
+    if (keyCode === 32) {
+      sfxLibrary.theBride[0].act1.its_not_my_intention.play();
+
+    }
+        this.theBride.keyPressed()
   }
 
   mousePressed(){

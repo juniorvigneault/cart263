@@ -1,0 +1,25 @@
+{
+  "description" : "sound library for the bride character",
+  "sound_library" : [
+    {
+      "act 1" : [
+        {
+          "sound1" : [
+            "path" : [
+              "assets/sounds/sound1.wav"
+            ]
+          ]
+        }
+      ]
+    },
+    "act 2" : [
+      {
+        "sound2" : [
+          "path" : [
+            "assets/sounds/sound2.wav"
+          ]
+        ]
+      }
+    ]
+  ]
+}
