@@ -1,15 +1,8 @@
 class Act1 extends Theatre {
-  constructor(x, y, w, h, world, a, curtain, donald, jordan, linda, act1) {
+  // first act of the play. Incorporates all the elements from theatre class
+  constructor(x, y, w, h, world, a, curtain, donald, jordan, linda) {
     super(x, y, w, h, world, a, curtain, donald, jordan, linda)
 
-    this.act1 = {
-      image : act1,
-      x : 300,
-      y : -40,
-      vy : 0,
-      speed : 1,
-      isMoving: true
-    }
 
     this.x = 300;
     this.y = 500;
@@ -17,87 +10,75 @@ class Act1 extends Theatre {
     this.theBride = new TheBride(this.x, this.y, 50, 100, world);
 
     this.roomToneSFXIsPlaying = false;
+
+// for some reason this doesn't work so that's why there is still hard coded numbers for spotlight
+    // this.spotlight = {
+    //   topCorner : {
+    //     x : 300,
+    //     y : - 100
+    //   },
+    //   letfCorner : {
+    //     x : - 150,
+    //     y : 600
+    //   },
+    //   rightCorner : {
+    //     x : 150,
+    //     y : 600
+    //   },
+    // }
+    this.spotlightON = false;
+
+    setTimeout(() => {
+      this.spotlightON = true;
+      spotSFX.play();
+      // spotbuzzSFX.loop();
+    }, 7500);
   }
 
   update() {
     background(0);
-    // middle spot
-    push();
-    let x1 = map(this.theBride.body.position.x, 0, 600,0,600)
-    let x2 = map(this.theBride.body.position.x, 0, 600,0,600)
-    fillHsluv(99,44,94)
-    noStroke();
-    triangle(300, -100, x1 - 150, 600, x2 + 150, 600)
-    pop();
+
+
+    if (this.spotlightON === true) {
+      this.displaySpotlight()
+      this.theBride.update();
+    }
 
     // play room tone
     if (this.roomToneSFXIsPlaying === false) {
       roomToneSFX.loop();
       this.roomToneSFXIsPlaying = true;
     }
-    // right spot
-    // push();
-    // let x3 = map(x1, 0, 600, 0,600)
-    // let x4 = map(x2, 0, 600,0,600)
-    // fillHsluv(99,44,94)
-    // noStroke();
-    // triangle(600, -100, x3, 600, x4 + 300, 600)
-    // pop();
 
-    this.theBride.update();
 
-    // push();
-    // rectMode(CENTER);
-    // noStroke();
-    // fill(0)
-    // rect(300, -50, 300, 300)
-    // pop();
     this.theBride.moveActor()
 
     super.update();
     super.curtainLift();
 
-
-
-    // push();
-    // imageMode(CENTER);
-    // image(this.act1.image, this.act1.x, this.act1.y);
-    // pop();
-
-
-    // if (this.act1.isMoving) {
-    //   this.act1.y = this.act1.y += this.act1.vy;
-    //   this.act1.vy = this.act1.speed;
-    //   this.moveact1()
-    // }
   }
-//  SOLUTION BY PIPPIN ======
-  // setTimeout(() => {
-  //   this.act1.moving = true;
-  //  }, 4000);
 
-
-  // moveact1(){
-  //   if (this.act1.y > 299) {
-  //     this.act1.isMoving = false
-  //
-  //     setTimeout(function() {
-  //       this.act1.isMoving = true;
-  //
-  //     }, 4000);
-  //   }
-  //
-  // }
 
   keyPressed() {
     if (keyCode === 32) {
-      sfxLibrary.theBride[0].act1.its_not_my_intention.play();
-
+      // sfxLibrary.theBride[0].act1.its_not_my_intention.play();
     }
+    console.log(`sword`)
         this.theBride.keyPressed()
   }
 
   mousePressed(){
 
+  }
+
+  displaySpotlight() {
+    // middle spotlight that follows the actor when moving
+    push();
+    let actorPosition1 = map(this.theBride.body.position.x, 0, 600,0,600)
+    let actorPosition2 = map(this.theBride.body.position.x, 0, 600,0,600)
+    fillHsluv(99,44,94)
+    noStroke();
+    triangle(300, -100, actorPosition1 - 150, 600, actorPosition2 + 150, 600)
+    pop();
   }
 }

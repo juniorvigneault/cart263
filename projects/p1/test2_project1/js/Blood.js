@@ -2,7 +2,7 @@ class Blood {
   constructor(x, y, w, h, world) {
     // Dripping blood
     let options = {
-      // friction against the rectangles 0 = hey slide off each other
+      // friction against the drops 0 = hey slide off each other
       // 1 = they stick more together
       friction: 0,
       // restitution = bodies bouncing off 0 = not bouncing 1 = bouncing
@@ -43,6 +43,7 @@ class Blood {
     pop();
   }
 
+// remove droplets from the engine
   removeFromWorld() {
     World.remove(world, this.body);
   }

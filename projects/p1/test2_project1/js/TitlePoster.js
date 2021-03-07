@@ -1,17 +1,17 @@
 class TitlePoster {
-  // title poster for the game. Click on play to start the game
+  // Title poster for the play (and game). Click on play to start.
+  // Yellow background with KILL BILL title
+  // Blood Stain with blood dripping
 
   constructor(bloodPNG) {
-    // create blocks for letters in poster and add them to the world
-    // blocks.push(new Block(200, 500, 200, 100, world, 0));
 
-    // pixel blood stain
+    // pixel blood stain image
     this.blood = {
       image: bloodPNG,
       x: 137,
       y: 200
     }
-    // yellow bg
+    // yellow background
     this.bg = {
       r: 254,
       g: 230,
@@ -62,45 +62,31 @@ class TitlePoster {
         color: 0
       }
     };
-
+    // red color fade when play is clicked
     this.fade = {
       x: 0,
       y: 0,
       fadeIn: 0,
       speed: 1.5,
       active: false,
-      color : {
+      color: {
         r: 255,
         g: 0,
         b: 0
       },
-
     }
   }
 
+  // method that calls everything happening in the class
   update() {
     // display yellow bg
-
     this.display();
 
-
-
-    // frameRate(10);
-    // display blocks for letters
-    // this.displayBlocks();
-
+    // mouse over the play title so it becomes red
     this.mouseOverPlay();
 
-
-
-
-    // this.displayText();
-    this.mouseOverPlay();
-    // this.moveTitle();
+    // display the fade out in red when play title is clicked
     this.displayBlackout();
-
-
-
   }
 
 
@@ -117,14 +103,22 @@ class TitlePoster {
     imageMode(CENTER);
     image(this.blood.image, this.blood.x, this.blood.y);
     pop();
-    this.bloodDroop();
-    // `The` from The Play text
+
+    // blood drops fall from the stain
+    this.bloodDrop();
+
+    // display 'KILL', 'BILL' and 'The' title text
     this.displayText(this.text.the.size, this.text.the.string, this.text.the.x, this.text.the.y);
     this.displayText(this.text.kill.size, this.text.kill.string, this.text.kill.x, this.text.kill.y)
     this.displayText(this.text.bill.size, this.text.bill.string, this.text.bill.x, this.text.bill.y)
   }
 
-  displayText(size, string, x, y, color = { r: 0, g: 0, b: 0}) {
+  // display text method
+  displayText(size, string, x, y, color = {
+    r: 0,
+    g: 0,
+    b: 0
+  }) {
     push();
     fill(color.r, color.g, color.b)
     textFont(`Impact`)
@@ -134,8 +128,7 @@ class TitlePoster {
     pop();
   }
 
-
-
+  // move the 'The Play' from the bottom of the screen to just under KILL BILL
   moveTitle() {
 
     this.text.the.y = this.text.the.y += this.text.the.vy;
@@ -151,46 +144,53 @@ class TitlePoster {
     }
   }
 
+  // method that turns 'Play' red when mouse is over
   mouseOverPlay() {
-
-    let color = {r: 0, g: 0, b: 0};
+    let color = {
+      r: 0,
+      g: 0,
+      b: 0
+    };
     if (this.mouseIsOverPlay()) {
       color = this.text.play.mouseOverColor;
     }
 
-    // display moving `Play` from The Play
+    // display moving `Play` from 'The Play'
     this.displayText(this.text.play.size, this.text.play.string, this.text.play.x, this.text.play.y, color)
   }
 
+  // method that turns 'Play' red when mouse is over (Created with Pippin Barr)
   mouseIsOverPlay() {
     textFont(`Impact`)
     textSize(this.text.play.size);
     let w = textWidth(this.text.play.string);
     let h = textAscent();
-
+    // if mouse is over text
     if (mouseX > this.text.play.x - w / 2 &&
       mouseX < this.text.play.x + w / 2 &&
       mouseY > this.text.play.y - h / 2 &&
       mouseY < this.text.play.y + h / 2) {
-        return true;
-      }
-      else {
-        return false;
-      }
+      return true;
+    } else {
+      return false;
+    }
   }
 
   mousePressed() {
     if (this.mouseIsOverPlay()) {
+      // activate the fade into red
       this.fade.active = true;
       this.text.kill.vx = 1
       // gunshotSFX.play();
       // babySFX.play();
+      // Make the act 1 appear after 9 seconds
       setTimeout(function() {
-        currentState = new Act1(width/2, 610, 700, 80, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
+        currentState = new Act1(width / 2, 610, 700, 80, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG);
       }, 9000);
     }
   }
 
+  // fade to red method
   displayBlackout() {
     if (this.fade.active) {
       push();
@@ -202,38 +202,26 @@ class TitlePoster {
     }
   }
 
-  endAnimation(){
-    this.text.kill.x = this.text.kill.x += this.text.kill.vx;
-    this.text.bill.x = this.text.bill.x += this.text.play.xv;
-  }
-
-  bloodDroop() {
+  // method for the droplets of blood
+  bloodDrop() {
     this.displayBlood()
     if (frameCount % 80 === 0) {
-    bloodDrops.push(new Blood(random(65,210), 200, 22, 22, world));
-  }
+      bloodDrops.push(new Blood(random(65, 210), 200, 22, 22, world));
+    }
   }
 
+  // display the droplets of blood
   displayBlood() {
     for (let i = 0; i < bloodDrops.length; i++) {
       bloodDrops[i].update();
       if (bloodDrops[i].offScreen()) {
-        // remove boxes from the world so the physics engine stops taking care of them when they leave screen
+        // remove drops from the world so the physics engine stops taking care of them when they leave screen
         bloodDrops[i].removeFromWorld();
-        // remove box from the array
+        // remove drops from the array
         bloodDrops.splice(i, 1);
-        // prevents the skipping of a box when removed from the array by backing up 1
+        // prevents the skipping of a drop when removed from the array by backing up 1 // Daniel Shiffman tip
         i--;
       }
-    }
-  }
-
-
-
-  displayBlocks() {
-    // draw the blocks
-    for (let i = 0; i < blocks.length; i++) {
-      blocks[i].update();
     }
   }
 }

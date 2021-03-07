@@ -1,5 +1,17 @@
 "use strict";
 
+// Project 1 : A Night At The Movies
+// KILL BILL, The Play
+// By Junior Vigneault for CART 263
+// Prof : Pippin Barr
+// March 6th 2021
+
+// **********************************************
+// Kill Bill, The Play is an experimental project that explores the relationship between art and entertainement.
+// Through the artist performing, the user attemps to put on a show for the audience.
+// The goal is to make the user feel the pressure of having to perform
+
+
 
 // module aliases // create engine variable
 let Engine = Matter.Engine;
@@ -13,7 +25,7 @@ let engine;
 // create a world variable in which bodies will exist
 let world;
 
-// canvas variable
+// canvas size variable
 let cnvX = 600;
 let cnvY = 780;
 
@@ -21,95 +33,105 @@ let cnvY = 780;
 let blood;
 let bloodDrops = [];
 
-// block varibles for static ground
+// block variables for static ground (stage)
 let block;
 let blocks = [];
 
+// SOUND VARIABLES
+// Music variables
+let featureSFX;
+let gunshotSFX;
+let babySFX;
+
+// ambiance sounds
+let roomToneSFX;
+let stepSFX;
+let spotSFX;
+let spotbuzzSFX;
+
+// sound Library
+// main charachter
+let sfxLibrary = {theBride:[]};
+let reverb;
+
+
+// crowd images variables
+let donaldPNG;
+let jordanPNG;
+let lindaPNG;
+
+// STATES VARIABLES
+// state names
 let currentState;
 let title;
 let act1;
 let test;
 
-let featureSFX;
-let gunshotSFX;
-let babySFX;
-
-// crowd
-let donaldPNG;
-let jordanPNG;
-let lindaPNG;
-
-// title poster
+// State 1 / title poster
 let bloodPNG;
 let writtenBy;
 
-// act 1
+// State 2 / act 1
 let act1PNG;
 let curtainPNG;
 let curtain2PNG;
 
-// animation test
+// Characher sprite animation variables
 let man;
 let myAnimation;
 
-// ambiance sounds
-let roomToneSFX;
 
-let stepSFX;
 
-// sound Library
-let sfxLibrary = {theBride:[]};
-
-let reverb;
-
+// Load Images and Sounds
 function preload() {
-  console.log(soundData)
+  // LOAD SOUNDS
 
-  // sound load
+  // Ambiance sounds
+  roomToneSFX = loadSound(`assets/sounds/ambiance/roomtone.wav`)
+  spotSFX = loadSound(`assets/sounds/ambiance/spot.wav`)
+  spotbuzzSFX = loadSound(`assets/sounds/ambiance/spotbuzz.wav`)
+
+
+  // The bride sounds (actor)
+  // Preload Sounds from library SoundData.js
   sfxLibrary.theBride[0] = {act1 : []};
   for (let i = 0; i < soundData.theBride[0].act1.length; i++) {
     let name = soundData.theBride[0].act1[i].name;
     let sound = loadSound(soundData.theBride[0].act1[i].path);
     sfxLibrary.theBride[0].act1[name] = sound;
 }
+  // footstep sound walking on stage
+  stepSFX = loadSound(`assets/sounds/the_bride/steps.wav`)
 
+  // MUSIC
   // featureSFX = loadSound(`assets/sounds/feature.mp3`);
   // gunshotSFX = loadSound(`assets/sounds/gunshot.mp3`);
   // babySFX = loadSound(`assets/sounds/baby_shot_me_down.mp3`);
-  // Act1
-  // crowd
+
+  // LOAD IMAGES
+  // Title Poster
+  bloodPNG = loadImage(`assets/images/blood.png`);
+
+  // Theatre assets
+  // Curtain PNG
+  curtainPNG = loadImage(`assets/images/curtain.png`)
+  // Crowd PNG
   donaldPNG = loadImage(`assets/images/donald.png`)
   jordanPNG = loadImage(`assets/images/jordan.png`)
   lindaPNG = loadImage(`assets/images/linda.png`)
-  // theatre assets
-  curtainPNG = loadImage(`assets/images/curtain.png`)
-  // curtain2PNG = loadImage(`assets/images/curtain2.png`)
 
-  // act1 title
+  // Act1 title
   act1PNG = loadImage(`assets/images/act1.png`);
 
-  // title poster
-  bloodPNG = loadImage(`assets/images/blood.png`);
-
-  // right walk Test
+  // Animation sprites using play.js
+  // create sprite positionned outside canvas at beginning (so it doesn't appear on title poster)
   man = createSprite(-100, -100);
-
-  myAnimation = man.addAnimation(`straight`, `assets/images/test/1.png`, `assets/images/test/6.png`);
-  man.addAnimation(`rightWalk`, `assets/images/test/001.png`, `assets/images/test/012.png`)
-  // man.addAnimation(`leftWalk`, `assets/images/test/001.png`, `assets/images/test/006.png`)
-  man.addAnimation(`jumpUp`, `assets/images/test/jump01.png`, `assets/images/test/jump07.png`)
-  // myAnimation.looping = false;
-
-
-  // ambiance sounds
-  roomToneSFX = loadSound(`assets/sounds/ambiance/roomtone.wav`)
-
-  // step sound
-  stepSFX = loadSound(`assets/sounds/the_bride/steps.wav`)
-
-
-
-
+  // add first animation (front) when not moving
+  myAnimation = man.addAnimation(`straight`, `assets/images/test/01.png`, `assets/images/test/06.png`);
+  // Second animation when walking right or left
+  man.addAnimation(`rightWalk`, `assets/images/test/side01.png`, `assets/images/test/side12.png`)
+  man.addAnimation(`sword`, `assets/images/test/hit1.png`, `assets/images/test/hit5.png`)
+  
 }
 
 function setup() {
@@ -129,6 +151,7 @@ function setup() {
   // create the physics in the world
   world = engine.world;
 
+  // Set the current state of the simulation
   // currentState = new TitlePoster(bloodPNG);
   currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
   // currentState = new Test();
@@ -137,8 +160,9 @@ function setup() {
 }
 
 function draw() {
+  // call the update method in the current state
   currentState.update();
-  // console.log(bloodDrops.push())
+  // make the sprites appear on screen (Actor)
   drawSprites();
 }
 
@@ -154,15 +178,11 @@ function strokeHsluv(h, s, l) {
 }
 
 function mousePressed(){
-  // responsiveVoice.speak("it's mercy, compassion and forgiveness I lack. Not Rationality!", "UK English Female", {
-  //   pitch: 1.2,
-  //   rate: 1,
-  //   volume: 0.5
-  // })
-  // sfxLibrary.theBride[0].act1.its_not_my_intention.play();
+  // call mouse pressed in the current state
   currentState.mousePressed();
 }
 
 function keyPressed() {
+  // call key pressed in the current state
   currentState.keyPressed()
 }

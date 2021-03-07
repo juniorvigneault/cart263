@@ -1,26 +1,25 @@
 class TheBride {
+  // Main character, The Bride. Actor on stage, controlled by the user
+
   constructor(x, y, w, h, world) {
-    // black mamba body
+    // The bride body
     let options = {
-      // friction against the rectangles 0 = hey slide off each other
-      // 1 = they stick more together
+      // friction against the stage
       friction: 0.2,
-      // restitution = bodies bouncing off 0 = not bouncing 1 = bouncing
+      // not bouncing
       restitution: 0,
+      // weight
       density: 0.0019,
+      // friction against air
       frictionAir: 0.2
         }
+
     this.body = Bodies.rectangle(x, y, w, h, options);
-    // converts radius to diameter
-    // this.r = r * 2;
 
     this.w = w;
     this.h = h;
 
     World.add(world, this.body);
-    console.log(this.body)
-
-    this.stepSFXIsPlaying = false;
   }
 
   update() {
@@ -39,45 +38,51 @@ class TheBride {
     fillHsluv(99,44,94)
     rect(0, 0, this.w, this.h)
     man.position.x = pos.x
-    man.position.y = pos.y - 47
+    man.position.y = pos.y - 40
     pop();
-
   }
 
+// make the bride (actor) move and change animation
   moveActor() {
     if(keyIsDown(RIGHT_ARROW)) {
-      Matter.Body.applyForce(this.body, this.body.position, {x: .007, y: 0})
+      // walk right
+      Matter.Body.applyForce(this.body, this.body.position, {x: .003, y: 0})
+      // change animation to walking
       man.changeAnimation(`rightWalk`)
+      // make the animation face right
       man.mirrorX(1);
-      this.playStep();
           }
     else if (keyIsDown(LEFT_ARROW)) {
-      Matter.Body.applyForce(this.body, this.body.position, {x: -.007, y: 0})
+      // walk left
+      Matter.Body.applyForce(this.body, this.body.position, {x: -.003, y: 0})
+      // change animation to walking
       man.changeAnimation(`rightWalk`);
-
+      // mirror animation to the left
       man.mirrorX(-1);
-      this.playStep();
     }
     else if (this.body.velocity.y > 0.1) {
-    //   Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: -.3})
-      man.changeAnimation(`jumpUp`)
+      // if jumping, change animation to jump
+      // man.changeAnimation(`sword`)
+    }
+    else if (keyIsDown(32)) {
+        man.changeAnimation(`sword`);
     }
     else {
+      // if nothing is moving, animation is set to front
       man.changeAnimation(`straight`)
-      stepSFX.stop();
-      this.stepSFXIsPlaying === false
     }
   }
 
   keyPressed() {
     if (keyCode === UP_ARROW && this.body.velocity.y < 0.1) {
-      Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: -.3})
-      man.changeAnimation(`jumpUp`);
-      // console.log(man.changeAnimation(`jumpUp`))
+      Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: -.2})
+      // man.changeAnimation(`jumpUp`);
     }
+
+
   }
 
-  // play room tone
+  // play footsteps when walking
   playStep(){
   if (this.stepSFXIsPlaying === false) {
     stepSFX.loop();

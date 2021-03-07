@@ -83,7 +83,6 @@ class Theatre {
       }
     };
 
-
     this.stage = {
       x: 0,
       y: 0,
@@ -99,8 +98,8 @@ class Theatre {
       y: 260,
       image: curtain,
       vy: 0,
-      speed:-1,
-      isMoving: true
+      speed:-1.5,
+      isMoving: false
     }
 
     this.attendee = {
@@ -120,6 +119,10 @@ class Theatre {
         y: 725,
       }
     }
+
+    setTimeout(() => {
+      this.curtain.isMoving = true;
+    }, 1000);
   };
 
   update() {
@@ -127,7 +130,7 @@ class Theatre {
   }
 
   display() {
-    // this.displayCurtain(this.curtain.image, this.curtain.x, this.curtain.y);
+    this.displayCurtain(this.curtain.image, this.curtain.x, this.curtain.y);
     this.displayStage();
     this.displaySeats();
   }
@@ -153,8 +156,6 @@ class Theatre {
       push();
       rectMode(CENTER);
       noStroke();
-      // strokeWeight(this.frontRow.stroke);
-      // strokeHsluv(this.frontRow.colorStroke.h, this.frontRow.colorStroke.s, this.frontRow.colorStroke.l);
       fillHsluv(this.frontRow.color.h, this.frontRow.color.s, this.frontRow.color.l);
       rect(this.frontRow.x, this.frontRow.y, this.frontRow.w, this.frontRow.h, this.frontRow.roundCorners);
       // draw seats in a row on the right at a distance from each other
@@ -168,8 +169,6 @@ class Theatre {
       push();
       rectMode(CENTER);
       noStroke();
-      // strokeWeight(this.middleRow.stroke);
-      // strokeHsluv(this.middleRow.colorStroke.h, this.middleRow.colorStroke.s, this.middleRow.colorStroke.l);
       fillHsluv(this.middleRow.color.h, this.middleRow.color.s, this.middleRow.color.l);
       rect(this.middleRow.x, this.middleRow.y, this.middleRow.w, this.middleRow.h, this.middleRow.roundCorners);
       // draw seats in a row on the right at a distance from each other
@@ -191,8 +190,6 @@ class Theatre {
       push();
       rectMode(CENTER)
       noStroke();
-      // strokeWeight(this.backRow.stroke)
-      // strokeHsluv(this.backRow.colorStroke.h, this.backRow.colorStroke.s, this.backRow.colorStroke.l);
       fillHsluv(this.backRow.color.h, this.backRow.color.s, this.backRow.color.l)
       rect(this.backRow.x, this.backRow.y, this.backRow.w, this.backRow.h, this.backRow.roundCorners);
       // draw seats in a row on the right at a distance from each other
@@ -207,32 +204,6 @@ class Theatre {
     image(img, x, y);
     pop();
   }
-  // displayCurtain() {
-  //   // curtain for loop variables
-  //   this.curtain.x = 0;
-  //   this.curtain.y = 0;
-  //   this.curtain.color.l = 32;
-  //   this.curtain.width = 22;
-  //   this.curtain.end = 10.4;
-  //   // drawing the curtain out of squished ellipses
-  //   for (let j = 0; j < this.curtain.length; j++) {
-  //     for (let i = 0; i < this.curtain.length; i++) {
-  //       push();
-  //       ellipseMode(CENTER);
-  //       noStroke();
-  //       fillHsluv(this.curtain.color.h, this.curtain.color.s, this.curtain.color.l);
-  //       ellipse(this.curtain.x, this.curtain.y, this.curtain.ellipseW, this.curtain.ellipseH);
-  //       // shape the curtain with ellipses a row
-  //       this.curtain.x = this.curtain.x + this.curtain.width;
-  //       pop();
-  //     };
-  //     // shape the curtain by repeating the first row of ellipses
-  //     this.curtain.y = this.curtain.y + this.curtain.end;
-  //     this.curtain.x = 0;
-  //     // red to dark red gradient in curtain
-  //     this.curtain.color.l = this.curtain.color.l - this.curtain.gradient;
-  //   };
-  // }
 
   curtainLift() {
     if (this.curtain.isMoving) {
@@ -249,7 +220,6 @@ class Theatre {
     // donald
     push();
     imageMode(CENTER);
-    // this.donald.png.resize(112,308)
     image(img, x, y);
     pop();
   }
