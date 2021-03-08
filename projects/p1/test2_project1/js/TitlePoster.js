@@ -185,7 +185,7 @@ class TitlePoster {
       babySFX.play();
       // Make the act 1 appear after 9 seconds
       setTimeout(function() {
-        currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
+        currentState = new Act1(width / 2, 610, 700, 80, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG);
       }, 12000);
     };
   }
