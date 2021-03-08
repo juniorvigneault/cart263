@@ -44,7 +44,7 @@ class Act1 extends Theatre {
     setTimeout(() => {
       openingSFX.play();
     }, 6000);
-    // turn on spotlight after 13 seconds
+    // turn on spotlight and reveal actor after 13 seconds
     setTimeout(() => {
       this.spotlightON = true;
       spotSFX.play();

@@ -1,4 +1,5 @@
 let soundData = {
+  // This is a sound library created with Pippin Barr. It is an way to well organize my sounds by name and not have everything in the script
 
   general: [
     {
