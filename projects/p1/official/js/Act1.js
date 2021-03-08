@@ -11,6 +11,11 @@ class Act1 extends Theatre {
 
     this.roomToneSFXIsPlaying = false;
 
+    this.flashingLight = false;
+
+    this.spotlightON = false;
+
+
 // for some reason this doesn't work so that's why there is still hard coded numbers for spotlight
     // this.spotlight = {
     //   topCorner : {
@@ -26,27 +31,40 @@ class Act1 extends Theatre {
     //     y : 600
     //   },
     // }
-    this.spotlightON = false;
+    // make the light flash after 3 seconds
+    setTimeout(() => {
+      this.flashingLight = true;
+    }, 3000);
+    // make the light flash again after 4.5 seconds
+    setTimeout(() => {
+      this.flashingLight = true;
 
+    }, 4500);
+    // make the opening song play while the curtain lifts
+    setTimeout(() => {
+      openingSFX.play();
+    }, 6000);
+    // turn on spotlight after 13 seconds
     setTimeout(() => {
       this.spotlightON = true;
       spotSFX.play();
       spotbuzzSFX.loop();
-    }, 9000);
+    }, 21200);
   }
 
   update() {
     background(0);
 
-
+    // if the spotlight is on than the actor is displayed on stage with the light of projector
     if (this.spotlightON === true) {
       this.displaySpotlight()
       this.theBride.update();
     }
 
-    // play room tone
+    // play room tone on loop and crowd chatting just at the beggining of the act
     if (this.roomToneSFXIsPlaying === false) {
       roomToneSFX.loop();
+      crowdSFX.play();
       this.roomToneSFXIsPlaying = true;
     }
 
@@ -57,14 +75,29 @@ class Act1 extends Theatre {
     // make the curtain lift
     super.curtainLift();
 
+    if (this.flashingLight) {
+      // if the light is flashing, make black rectangle appear on top of everything for half a second twice
+      push();
+      // black rectangle with opacity to make it look like a closed light
+      fill(0,0,0,99);
+      noStroke();
+      rect(0,0,width, height);
+      pop();
+      // lights back on after half a second
+      setTimeout(() => {
+        this.flashingLight = false;
+      }, 500);
+    }
+
   }
 
 
   keyPressed() {
-    if (keyCode === 32) {
-      // sfxLibrary.theBride[0].act1.its_not_my_intention.play();
+    // if actor is appearing on stage and user presses space bar, sword sound is triggered
+    if (keyCode === 32 && this.spotlightON === true) {
+      // Play sword swoop sound in the sound data library
+      sfxLibrary.theBride[0].act1.fight_sound.play();
     }
-    console.log(`sword`)
         this.theBride.keyPressed()
   }
 

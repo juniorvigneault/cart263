@@ -13,8 +13,8 @@ let soundData = {
       // The Bride vs Copperhead
       act1 : [
         {
-          name: "its_not_my_intention",
-          path: "assets/sounds/the_bride/its_not_my_intention.wav"
+          name: "fight_sound",
+          path: "assets/sounds/the_bride/HA.wav"
         },
         // {
         //   name: "2",

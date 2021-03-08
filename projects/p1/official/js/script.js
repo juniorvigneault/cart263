@@ -37,7 +37,7 @@ let blocks = [];
 
 // SOUND VARIABLES
 // Music variables
-let featureSFX;
+let openingSFX;
 let gunshotSFX;
 let babySFX;
 
@@ -46,6 +46,7 @@ let roomToneSFX;
 let stepSFX;
 let spotSFX;
 let spotbuzzSFX;
+let crowdSFX;
 
 // sound Library
 // main charachter
@@ -88,6 +89,7 @@ function preload() {
   roomToneSFX = loadSound(`assets/sounds/ambiance/roomtone.wav`);
   spotSFX = loadSound(`assets/sounds/ambiance/spot.wav`);
   spotbuzzSFX = loadSound(`assets/sounds/ambiance/spotbuzz.wav`);
+  crowdSFX = loadSound(`assets/sounds/ambiance/crowd.wav`);
 
 
   // The bride sounds (actor)
@@ -103,7 +105,7 @@ function preload() {
   stepSFX = loadSound(`assets/sounds/the_bride/steps.wav`);
 
   // MUSIC
-  // featureSFX = loadSound(`assets/sounds/feature.mp3`);
+  openingSFX = loadSound(`assets/sounds/ambiance/opening_trumpets.wav`);
   gunshotSFX = loadSound(`assets/sounds/ambiance/gunshot.mp3`);
   babySFX = loadSound(`assets/sounds/ambiance/baby_shot_me_down.mp3`);
 
@@ -151,8 +153,8 @@ function setup() {
   world = engine.world;
 
   // Set the current state of the simulation
-  currentState = new TitlePoster(bloodPNG);
-  // currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
+  // currentState = new TitlePoster(bloodPNG);
+  currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
   // currentState = new Test();
   // featureSFX.play();
 
