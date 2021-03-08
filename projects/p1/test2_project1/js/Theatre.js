@@ -1,4 +1,5 @@
 class Theatre {
+  // class with all the visual theatre assets and the audience members
   constructor(x, y, w, h, world, a, curtain, donald, jordan, linda) {
     // STAGE Matter.js setup
     let options = {
@@ -122,7 +123,7 @@ class Theatre {
 
     setTimeout(() => {
       this.curtain.isMoving = true;
-    }, 1000);
+    }, 2000);
   };
 
   update() {
@@ -188,9 +189,9 @@ class Theatre {
     this.backRow.x = 0;
     for (let i = 0; i < this.numSeatsPerRow; i++) {
       push();
-      rectMode(CENTER)
+      rectMode(CENTER);
       noStroke();
-      fillHsluv(this.backRow.color.h, this.backRow.color.s, this.backRow.color.l)
+      fillHsluv(this.backRow.color.h, this.backRow.color.s, this.backRow.color.l);
       rect(this.backRow.x, this.backRow.y, this.backRow.w, this.backRow.h, this.backRow.roundCorners);
       // draw seats in a row on the right at a distance from each other
       this.backRow.x = this.backRow.x + this.backRow.distance;
@@ -207,8 +208,8 @@ class Theatre {
 
   curtainLift() {
     if (this.curtain.isMoving) {
-    this.curtain.y = this.curtain.y += this.curtain.vy
-    this.curtain.vy = this.curtain.speed
+    this.curtain.y = this.curtain.y += this.curtain.vy;
+    this.curtain.vy = this.curtain.speed;
   }
   if (this.curtain.isMoving && this.curtain.y < - 200) {
     this.curtain.isMoving = false;

@@ -31,8 +31,8 @@ class Act1 extends Theatre {
     setTimeout(() => {
       this.spotlightON = true;
       spotSFX.play();
-      // spotbuzzSFX.loop();
-    }, 7500);
+      spotbuzzSFX.loop();
+    }, 9000);
   }
 
   update() {
@@ -50,10 +50,11 @@ class Act1 extends Theatre {
       this.roomToneSFXIsPlaying = true;
     }
 
-
-    this.theBride.moveActor()
+    // move the actor during act 1
+    this.theBride.moveActor();
 
     super.update();
+    // make the curtain lift
     super.curtainLift();
 
   }

@@ -1,4 +1,5 @@
 class Blood {
+  // dripping blood displayed in title poster and in act 2 (if i had gotten there)
   constructor(x, y, w, h, world) {
     // Dripping blood
     let options = {
@@ -38,12 +39,12 @@ class Blood {
     noStroke();
     translate(pos.x, pos.y);
     rotate(angle);
-    fill(this.fill.r, this.fill.g, this.fill.b)
-    rect(0, 0, this.w, this.h)
+    fill(this.fill.r, this.fill.g, this.fill.b);
+    rect(0, 0, this.w, this.h);
     pop();
   }
 
-// remove droplets from the engine
+  // remove droplets from the engine
   removeFromWorld() {
     World.remove(world, this.body);
   }

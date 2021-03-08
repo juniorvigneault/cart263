@@ -35,10 +35,10 @@ class TheBride {
     noStroke();
     translate(pos.x, pos.y);
     rotate(angle);
-    fillHsluv(99,44,94)
-    rect(0, 0, this.w, this.h)
-    man.position.x = pos.x
-    man.position.y = pos.y - 40
+    fillHsluv(99,44,94);
+    rect(0, 0, this.w, this.h);
+    actorSprite.position.x = pos.x;
+    actorSprite.position.y = pos.y - 40;
     pop();
   }
 
@@ -46,36 +46,36 @@ class TheBride {
   moveActor() {
     if(keyIsDown(RIGHT_ARROW)) {
       // walk right
-      Matter.Body.applyForce(this.body, this.body.position, {x: .003, y: 0})
+      Matter.Body.applyForce(this.body, this.body.position, {x: .003, y: 0});
       // change animation to walking
-      man.changeAnimation(`rightWalk`)
+      actorSprite.changeAnimation(`rightWalk`);
       // make the animation face right
-      man.mirrorX(1);
+      actorSprite.mirrorX(1);
           }
     else if (keyIsDown(LEFT_ARROW)) {
       // walk left
-      Matter.Body.applyForce(this.body, this.body.position, {x: -.003, y: 0})
+      Matter.Body.applyForce(this.body, this.body.position, {x: -.003, y: 0});
       // change animation to walking
-      man.changeAnimation(`rightWalk`);
+      actorSprite.changeAnimation(`rightWalk`);
       // mirror animation to the left
-      man.mirrorX(-1);
+      actorSprite.mirrorX(-1);
     }
     else if (this.body.velocity.y > 0.1) {
       // if jumping, change animation to jump
       // man.changeAnimation(`sword`)
     }
     else if (keyIsDown(32)) {
-        man.changeAnimation(`sword`);
+        actorSprite.changeAnimation(`sword`);
     }
     else {
       // if nothing is moving, animation is set to front
-      man.changeAnimation(`straight`)
+      actorSprite.changeAnimation(`straight`);
     }
   }
 
   keyPressed() {
     if (keyCode === UP_ARROW && this.body.velocity.y < 0.1) {
-      Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: -.2})
+      Matter.Body.applyForce(this.body, this.body.position, {x: 0, y: -.2});
       // man.changeAnimation(`jumpUp`);
     }
 

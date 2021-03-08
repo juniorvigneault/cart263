@@ -8,10 +8,8 @@
 
 // **********************************************
 // Kill Bill, The Play is an experimental project that explores the relationship between art and entertainement.
-// Through the artist performing, the user attemps to put on a show for the audience.
-// The goal is to make the user feel the pressure of having to perform
-
-
+// Through the artist performing on stage, the user attemps to put on a show for the audience.
+// The goal is to make the user feel the pressure of having to perform live
 
 // module aliases // create engine variable
 let Engine = Matter.Engine;
@@ -77,8 +75,8 @@ let curtainPNG;
 let curtain2PNG;
 
 // Characher sprite animation variables
-let man;
-let myAnimation;
+let actorSprite;
+let animationSprite;
 
 
 
@@ -87,13 +85,14 @@ function preload() {
   // LOAD SOUNDS
 
   // Ambiance sounds
-  roomToneSFX = loadSound(`assets/sounds/ambiance/roomtone.wav`)
-  spotSFX = loadSound(`assets/sounds/ambiance/spot.wav`)
-  spotbuzzSFX = loadSound(`assets/sounds/ambiance/spotbuzz.wav`)
+  roomToneSFX = loadSound(`assets/sounds/ambiance/roomtone.wav`);
+  spotSFX = loadSound(`assets/sounds/ambiance/spot.wav`);
+  spotbuzzSFX = loadSound(`assets/sounds/ambiance/spotbuzz.wav`);
 
 
   // The bride sounds (actor)
   // Preload Sounds from library SoundData.js
+  // made with the help of Pippin Barr (I'm not actually using it in my program but i'm still happy I made it work and will definetly be using again)
   sfxLibrary.theBride[0] = {act1 : []};
   for (let i = 0; i < soundData.theBride[0].act1.length; i++) {
     let name = soundData.theBride[0].act1[i].name;
@@ -101,12 +100,12 @@ function preload() {
     sfxLibrary.theBride[0].act1[name] = sound;
 }
   // footstep sound walking on stage
-  stepSFX = loadSound(`assets/sounds/the_bride/steps.wav`)
+  stepSFX = loadSound(`assets/sounds/the_bride/steps.wav`);
 
   // MUSIC
   // featureSFX = loadSound(`assets/sounds/feature.mp3`);
-  // gunshotSFX = loadSound(`assets/sounds/gunshot.mp3`);
-  // babySFX = loadSound(`assets/sounds/baby_shot_me_down.mp3`);
+  gunshotSFX = loadSound(`assets/sounds/ambiance/gunshot.mp3`);
+  babySFX = loadSound(`assets/sounds/ambiance/baby_shot_me_down.mp3`);
 
   // LOAD IMAGES
   // Title Poster
@@ -114,24 +113,24 @@ function preload() {
 
   // Theatre assets
   // Curtain PNG
-  curtainPNG = loadImage(`assets/images/curtain.png`)
+  curtainPNG = loadImage(`assets/images/curtain.png`);
   // Crowd PNG
-  donaldPNG = loadImage(`assets/images/donald.png`)
-  jordanPNG = loadImage(`assets/images/jordan.png`)
-  lindaPNG = loadImage(`assets/images/linda.png`)
+  donaldPNG = loadImage(`assets/images/donald.png`);
+  jordanPNG = loadImage(`assets/images/jordan.png`);
+  lindaPNG = loadImage(`assets/images/linda.png`);
 
   // Act1 title
   act1PNG = loadImage(`assets/images/act1.png`);
 
   // Animation sprites using play.js
   // create sprite positionned outside canvas at beginning (so it doesn't appear on title poster)
-  man = createSprite(-100, -100);
+  actorSprite = createSprite(-100, -100);
   // add first animation (front) when not moving
-  myAnimation = man.addAnimation(`straight`, `assets/images/test/01.png`, `assets/images/test/06.png`);
+  animationSprite = actorSprite.addAnimation(`straight`, `assets/images/test/01.png`, `assets/images/test/06.png`);
   // Second animation when walking right or left
-  man.addAnimation(`rightWalk`, `assets/images/test/side01.png`, `assets/images/test/side12.png`)
-  man.addAnimation(`sword`, `assets/images/test/hit1.png`, `assets/images/test/hit5.png`)
-  
+  actorSprite.addAnimation(`rightWalk`, `assets/images/test/side01.png`, `assets/images/test/side12.png`);
+  actorSprite.addAnimation(`sword`, `assets/images/test/hit1.png`, `assets/images/test/hit5.png`);
+
 }
 
 function setup() {
@@ -139,8 +138,8 @@ function setup() {
   userStartAudio();
   // reverb setup
   reverb = new p5.Reverb();
-  reverb.process(roomToneSFX, 3,15)
-  reverb.process(stepSFX, 3,15)
+  reverb.process(roomToneSFX, 3,15);
+  reverb.process(stepSFX, 3,15);
 
 
   // MATTER.JS
@@ -152,8 +151,8 @@ function setup() {
   world = engine.world;
 
   // Set the current state of the simulation
-  // currentState = new TitlePoster(bloodPNG);
-  currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
+  currentState = new TitlePoster(bloodPNG);
+  // currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
   // currentState = new Test();
   // featureSFX.play();
 

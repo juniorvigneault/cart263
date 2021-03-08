@@ -67,7 +67,7 @@ class TitlePoster {
       x: 0,
       y: 0,
       fadeIn: 0,
-      speed: 1.5,
+      speed: .5,
       active: false,
       color: {
         r: 255,
@@ -109,8 +109,8 @@ class TitlePoster {
 
     // display 'KILL', 'BILL' and 'The' title text
     this.displayText(this.text.the.size, this.text.the.string, this.text.the.x, this.text.the.y);
-    this.displayText(this.text.kill.size, this.text.kill.string, this.text.kill.x, this.text.kill.y)
-    this.displayText(this.text.bill.size, this.text.bill.string, this.text.bill.x, this.text.bill.y)
+    this.displayText(this.text.kill.size, this.text.kill.string, this.text.kill.x, this.text.kill.y);
+    this.displayText(this.text.bill.size, this.text.bill.string, this.text.bill.x, this.text.bill.y);
   }
 
   // display text method
@@ -139,8 +139,8 @@ class TitlePoster {
       this.text.play.vy = this.text.play.speed;
     }
     if (this.text.the.y < this.text.the.final) {
-      this.text.the.vy = this.text.the.stop
-      this.text.play.vy = this.text.the.stop
+      this.text.the.vy = this.text.the.stop;
+      this.text.play.vy = this.text.the.stop;
     }
   }
 
@@ -156,7 +156,7 @@ class TitlePoster {
     }
 
     // display moving `Play` from 'The Play'
-    this.displayText(this.text.play.size, this.text.play.string, this.text.play.x, this.text.play.y, color)
+    this.displayText(this.text.play.size, this.text.play.string, this.text.play.x, this.text.play.y, color);
   }
 
   // method that turns 'Play' red when mouse is over (Created with Pippin Barr)
@@ -173,7 +173,7 @@ class TitlePoster {
       return true;
     } else {
       return false;
-    }
+    };
   }
 
   mousePressed() {
@@ -181,13 +181,13 @@ class TitlePoster {
       // activate the fade into red
       this.fade.active = true;
       this.text.kill.vx = 1
-      // gunshotSFX.play();
-      // babySFX.play();
+      gunshotSFX.play();
+      babySFX.play();
       // Make the act 1 appear after 9 seconds
       setTimeout(function() {
         currentState = new Act1(width / 2, 610, 700, 80, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG);
-      }, 9000);
-    }
+      }, 12000);
+    };
   }
 
   // fade to red method
@@ -199,7 +199,7 @@ class TitlePoster {
       fill(this.fade.color.r, this.fade.color.g, this.fade.color.b, this.fade.fadeIn);
       rect(this.fade.x, this.fade.y, cnvX, cnvY);
       pop();
-    }
+    };
   }
 
   // method for the droplets of blood
@@ -207,7 +207,7 @@ class TitlePoster {
     this.displayBlood()
     if (frameCount % 80 === 0) {
       bloodDrops.push(new Blood(random(65, 210), 200, 22, 22, world));
-    }
+    };
   }
 
   // display the droplets of blood
@@ -221,7 +221,7 @@ class TitlePoster {
         bloodDrops.splice(i, 1);
         // prevents the skipping of a drop when removed from the array by backing up 1 // Daniel Shiffman tip
         i--;
-      }
-    }
+      };
+    };
   }
 }
