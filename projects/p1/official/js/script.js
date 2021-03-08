@@ -153,8 +153,8 @@ function setup() {
   world = engine.world;
 
   // Set the current state of the simulation
-  // currentState = new TitlePoster(bloodPNG);
-  currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
+  currentState = new TitlePoster(bloodPNG);
+  // currentState = new Act1(300, 610, 700, 125, world, 0, curtainPNG, donaldPNG, jordanPNG, lindaPNG, act1PNG);
   // currentState = new Test();
   // featureSFX.play();
 
