@@ -224,4 +224,8 @@ class Theatre {
     image(img, x, y);
     pop();
   }
+
+  keyPressed() {
+    
+  }
 };

@@ -93,6 +93,7 @@ class Act1 extends Theatre {
 
 
   keyPressed() {
+    super.keyPressed();
     // if actor is appearing on stage and user presses space bar, sword sound is triggered
     if (keyCode === 32 && this.spotlightON === true) {
       // Play sword swoop sound in the sound data library
@@ -102,7 +103,6 @@ class Act1 extends Theatre {
   }
 
   mousePressed(){
-
   }
 
   displaySpotlight() {
