@@ -5,6 +5,8 @@ class TitlePoster {
 
   constructor(bloodPNG) {
 
+    this.gunClicking = false;
+
     // pixel blood stain image
     this.blood = {
       image: bloodPNG,
@@ -87,6 +89,8 @@ class TitlePoster {
 
     // display the fade out in red when play title is clicked
     this.displayBlackout();
+
+
   }
 
 
@@ -173,7 +177,7 @@ class TitlePoster {
       return true;
     } else {
       return false;
-    };
+    }
   }
 
   mousePressed() {
@@ -224,7 +228,8 @@ class TitlePoster {
       };
     };
   }
+
   keyPressed(){
-    
+
   }
 }

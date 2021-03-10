@@ -47,6 +47,7 @@ let stepSFX;
 let spotSFX;
 let spotbuzzSFX;
 let crowdSFX;
+let gunClickSFX;
 
 // sound Library
 // main charachter
@@ -106,8 +107,11 @@ function preload() {
 
   // MUSIC
   openingSFX = loadSound(`assets/sounds/ambiance/opening_trumpets.wav`);
-  gunshotSFX = loadSound(`assets/sounds/ambiance/gunshot.mp3`);
+  gunshotSFX = loadSound(`assets/sounds/ambiance/gunshot.wav`);
   babySFX = loadSound(`assets/sounds/ambiance/baby_shot_me_down.mp3`);
+  // title poster gun click sfx
+  gunClickSFX = loadSound(`assets/sounds/ambiance/gun_click.wav`);
+
 
   // LOAD IMAGES
   // Title Poster

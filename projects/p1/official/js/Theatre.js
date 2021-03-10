@@ -123,7 +123,7 @@ class Theatre {
 
     setTimeout(() => {
       this.curtain.isMoving = true;
-    }, 6000);
+    }, 7000);
   };
 
   update() {
@@ -226,6 +226,6 @@ class Theatre {
   }
 
   keyPressed() {
-    
+
   }
 };
