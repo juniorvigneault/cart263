@@ -81,7 +81,7 @@ function setNewLine(element) {
 };
 
 lineGenerator(line1, fiveSyllableLines, line1p, `line-1`);
-lineGenerator(line2, fiveSyllableLines, line2p, `line-2`);
+lineGenerator(line2, sevenSyllableLines, line2p, `line-2`);
 lineGenerator(line3, fiveSyllableLines, line3p, `line-3`);
 
 
