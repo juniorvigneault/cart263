@@ -33,13 +33,9 @@ let sevenSyllableLines = [
   `I said no shoes inside sir`,
 ];
 
+// line 1 will be at index 0, line 2 at index 1, and line 3 at index 2
+let lines = [];
 
-let line1;
-let line2;
-let line3;
-let line1p;
-let line2p;
-let line3p;
 
 
 function lineClicked(event) {
@@ -50,13 +46,12 @@ function fadeOut(element, opacity) {
   opacity -= 0.05;
   element.style[`opacity`] = opacity;
   if (opacity > 0) {
-    requestAnimationFrame(function(){
+    requestAnimationFrame(function() {
       fadeOut(element, opacity);
     });
-  }
-  else {
-     setNewLine(element);
-     fadeIn(element, 0);
+  } else {
+    setNewLine(element);
+    fadeIn(element, 0);
   }
 }
 
@@ -64,7 +59,7 @@ function fadeIn(element, opacity) {
   opacity += 0.05;
   element.style[`opacity`] = opacity;
   if (opacity < 1) {
-    requestAnimationFrame(function(){
+    requestAnimationFrame(function() {
       fadeIn(element, opacity);
     });
   }
@@ -72,24 +67,26 @@ function fadeIn(element, opacity) {
 
 
 function setNewLine(element) {
-  if (element === line1p || element === line3p) {
+  // p elements are now in the lines array
+  if (element === lines[0] || element === lines[2]) {
     element.innerText = random(fiveSyllableLines);
-  }
-  else if (element === line2p) {
+  } else if (element === lines[1]) {
     element.innerText = random(sevenSyllableLines);
   }
 };
 
-lineGenerator(line1, fiveSyllableLines, line1p, `line-1`);
-lineGenerator(line2, sevenSyllableLines, line2p, `line-2`);
-lineGenerator(line3, fiveSyllableLines, line3p, `line-3`);
+// mirror the new parameters of lineGenerator
+lineGenerator(0, fiveSyllableLines, `line-1`);
+lineGenerator(1, sevenSyllableLines, `line-2`);
+lineGenerator(2, fiveSyllableLines, `line-3`);
 
 
-function lineGenerator(line, syllableLine, linep, lineString){
-  line = random(syllableLine);
-  linep = document.getElementById(lineString);
-  linep.innerText = line;
-  linep.addEventListener(`click`, lineClicked);
+// deal with the idea that the lines are in an array
+function lineGenerator(index, syllableLine, lineString) {
+  let line = random(syllableLine);
+  lines[index] = document.getElementById(lineString);
+  lines[index].innerText = line;
+  lines[index].addEventListener(`click`, lineClicked);
 }
 
 function random(array) {
