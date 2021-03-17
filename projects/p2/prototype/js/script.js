@@ -41,12 +41,11 @@ function draw() {
 // go through the array of points in and draw green ellipses on each
 function keypoints() {
   for (let i = 0; i < predictions.length; i++) {
-    const face = predictions[i];
-    for (let j = 0; j < face.annotations.silhouette.length; j ++) {
-      const keypoint = face.annotations.silhouette[j];
-      fill(0,255,0);
-      noStroke();
-      ellipse(keypoint[0], keypoint[1], 3,3);
+    const keypoints = predictions[i].scaledMesh;
+
+    // Log facial keypoints.
+    for (let i = 0; i < keypoints.length; i++) {
+      const [x, y, z] = keypoints[i];
     }
   }
 }
