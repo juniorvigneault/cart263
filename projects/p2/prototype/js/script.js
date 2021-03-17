@@ -7,16 +7,30 @@
 // video variable that contains video capture
 let video;
 let predictions = [];
+let maskIMG
+
+const NUM_FLY_IMAGES = 1;
+const NUM_FLIES = 300;
+
+let flyImages = [];
+let flies = [];
+let flyImage;
 
 // preload sound and images
-function preload(){
+function preload() {
+  flyImage = loadImage(`assets/images/fly.png`)
 }
+
+
 
 //
 function setup() {
   createCanvas(1000, 750);
   video = createCapture(VIDEO);
   video.hide();
+
+  // Create flies
+  createFlies(NUM_FLIES);
 
   // Loading model and connect with video
   const facemesh = ml5.facemesh(video, modelReady);
@@ -26,15 +40,20 @@ function setup() {
   facemesh.on(`predict`, results => {
     predictions = results
 
-    console.log(results)
+
+    // console.log(results)
   });
 }
 
 function draw() {
-  background(0);
-  // image(video, width/2, height/2, 1000, 750);
-  image(video, 0,0);
+  background(255);
+  imageMode(CENTER)
   keypoints();
+  displayFlies(NUM_FLIES)
+
+  // image(video, width/2, height/2, 1000, 750);
+  // image(video, 0,0);
+
 
 }
 
@@ -45,8 +64,20 @@ function keypoints() {
 
     // Log facial keypoints.
     for (let i = 0; i < keypoints.length; i++) {
-      const [x, y, z] = keypoints[i];
+      let x = map(keypoints[i][0], 0, video.width, 0, width);
+      let y = map(keypoints[i][1], 0, video.height, 0, height);
+      let z = keypoints[i][2];
+      fill(0, 255, 0);
+      noStroke();
+      ellipse(x, y, 3, 3);
     }
+    // push();
+    // fill(0);
+    // let x = map(keypoints[10][0], 0, video.width, 0, width);
+    // let y = map(keypoints[10][1], 0, video.height, 0, height);
+    // fill(0,255,0)
+    // ellipse(x, y,20,20);
+    // pop();
   }
 }
 
@@ -62,6 +93,23 @@ function keypoints() {
 //   }
 // }
 
-function modelReady(){
+function modelReady() {
   console.log(`MODEL IS READY`);
+}
+
+function createFlies(numberFlies) {
+  for (let i = 0; i < numberFlies; i++) {
+    let x = random(0, width);
+    let y = random(0, height);
+    let fly = new Fly(x, y, flyImage);
+    flies.push(fly);
+  }
+}
+
+// function to display flies and pick them up (used both in title and game with diff numbers)
+function displayFlies(numberFlies) {
+  for (let i = 0; i < numberFlies; i++) {
+    flies[i].update();
+    // flies[i].mousePressed();
+  }
 }
