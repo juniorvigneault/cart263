@@ -1,9 +1,6 @@
-#answer {
-  width: 10rem;
-  height: 2rem;
-  border: 1px dashed black;
-}
 
-.found{
-  color: red;
+input {
+  width: 70%;
+  padding: 8px;
+  margin: 30px;
 }

@@ -7,31 +7,17 @@ DA VINCI?
 
 "use strict";
 
-$(`#solved-dialog`).dialog({
+$(`#log-in-box`).dialog({
   buttons: {
-    "I know.": function(){
+    "log in": function(){
       $(this).dialog(`close`);
     }
   },
-  autoOpen: false
+  show: { effect: "blind", duration: 1000},
+  resizable: false,
+  position: { my: "center", at: "center", of: window },
+  modal: true,
+  height: 400,
+  draggable: false,
+  closeOnEscape: false,
 })
-
-$(`.secret`).on(`mouseover`, function(event){
-  $(this).addClass(`found`, 500);
-  $(this).draggable({
-    helper: `clone`
-  });
-});
-
-$(`#answer`).droppable({
-  drop: function(event, ui) {
-    let letter = ui.draggable.text();
-    $(this).append(letter);
-    ui.draggable.draggable(`disable`);
-    ui.draggable.removeClass(`found`);
-    // check if the code is right
-    if ($(this).text() === `Theremin`) {
-      $(`#solved-dialog`).dialog(`open`);
-    }
-  }
-});
