@@ -37,7 +37,7 @@ class Life {
       currentState = new Death();
     }
     if (keyCode === 13) {
-      this.typewriter.typewrite(`Isn't it beautiful...Life?`, 150, 460)
+      this.typewriter.typewrite(`...Life...`, width/2 - 30, 460)
     }
   }
 

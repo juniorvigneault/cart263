@@ -14,7 +14,7 @@ class Typewriter {
     // The index of the next character to add to the displayed text
     this.nextChar = 0;
     // How often to add a character (milliseconds)
-    this.speed = 50;
+    this.speed = 100;
     // The interval used to display the characters so we can cancel it
     this.interval = undefined;
     // The position to display the text at

@@ -1,6 +1,6 @@
 class Baby {
   constructor() {
-    this.x = width/2;
+    this.x = width / 2;
     this.y = 200;
     this.size = 100;
     this.name = `BABY`;
@@ -21,42 +21,39 @@ class Baby {
     this.acceleration = 0.02;
     this.accelerationX = 0.02;
     this.offset = 0;
-    this.strum = 1;
+    this.strum = 2;
     this.offset2 = 0;
     this.strum2 = 1;
     this.wiggle = 300;
-    this.upDown = height/2;
-
+    this.upDown = height / 2;
+    this.color2 = 224;
   }
 
   update() {
     this.displayBaby()
     this.move();
     this.wave();
-
-
-
   }
 
-// code taken from https://editor.p5js.org/stevenraysimon/sketches/HyTseadOg
+  // code taken from https://editor.p5js.org/stevenraysimon/sketches/HyTseadOg
   feed() {
-  this.beingFed = true;
+    this.beingFed = true;
   };
 
   wave() {
     push();
     noStroke();
     translate(0,0);
-    rotate(radians(0))
-    fill(0,30,100);
+    rotate(radians(62))
+    fill(0,30,100,50);
     beginShape();
-    vertex(x, this.y);
+    vertex(0, 0);
     for (var x = 0; x < width; x++) {
       //var angle = map(x, 0, width, 0, TWO_PI);
       var angle = this.offset + x * 0.01;
       // map x between 0 and width to 0 and Two Pi
       var y = map(sin(angle), -this.strum, this.strum, 150, 10);
-      vertex(this.x, this.y);
+      vertex(x, y);
     }
     vertex(width, height);
     endShape();
@@ -78,18 +75,15 @@ class Baby {
 
   mousePressed() {
     let d = dist(mouseX, mouseY, this.x, this.y)
-    if (d < this.size / 2) {
-      this.wiggle = 303;
-      this.accelerationX = 0.06
+    if (d < this.size / 2 && this.wiggle == 300) {
+      this.wiggle = 301;
+      this.accelerationX = 0.2
       console.log(`I love u`)
-      color =
-
-
       setTimeout(() => {
         this.wiggle = 300;
         this.accelerationX = 0
-        this.x = width/2
-      }, 2000);
+        // this.x = width/2
+      }, 300);
     }
   }
 
@@ -112,9 +106,8 @@ class Baby {
 
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
-    this.x = constrain(this.x, 1 + this.size/2, width - 1 - this.size/2);
-    this.y = constrain(this.y, 1 + this.size/2, height - 1 - this.size/2);
-
+    this.x = constrain(this.x, 1 + this.size / 2, width - 1 - this.size / 2);
+    this.y = constrain(this.y, 1 + this.size / 2, height - 1 - this.size / 2);
   }
 
   // moving randomly
@@ -137,8 +130,8 @@ class Baby {
     // baby body
     noStroke();
     ellipseMode(CENTER);
-    color = map(this.y,199,300,80,50)
-    fillHsluv(224,97,color)
+    color = map(this.y, 199, 300, 80, 50)
+    fillHsluv(this.color2, 97, color)
     ellipse(this.x, this.y, this.size, this.size);
     pop();
   }
