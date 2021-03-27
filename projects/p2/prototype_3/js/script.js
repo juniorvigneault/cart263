@@ -5,6 +5,8 @@ let babyFace;
 
 let currentState;
 
+function preload(){
+}
 function setup() {
   // Create the canvas
   let canvas = createCanvas(600,500);
