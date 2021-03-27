@@ -5,7 +5,7 @@ body {
   /* Set up the grid and justify/align to center */
   justify-content: center;
   align-content: center;
-  height: 100vh;
+  height: 80vh;
   /* Body is the height of the viewport */
   overflow: hidden;
   /* Hide anything that goes off the window size */
@@ -14,5 +14,12 @@ body {
 /* Some CSS grid styling to make the UI look less totally awful */
 #ui {
   display: grid;
-  grid-template-columns: 250px 250px;
+  grid-template-columns: 100px 100px;
+  margin-top: 2rem;
+  justify-content: center;
+  height: 2rem;
+}
+
+#p5js-canvas {
+border: solid 1px black;
 }
