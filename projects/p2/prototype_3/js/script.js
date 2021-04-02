@@ -1,31 +1,45 @@
 "use strict";
+// LIFE by Junior Vigneault for CART 263
+// A minimalist simulation about the cycle of life
+// PROTOTYPE
 
+// variable for baby class
 let baby;
-let babyFace;
 
 let currentState;
+let mainFont;
 
+// ambiance sound of water and noise with low pass filter
+let ambianceRumble;
+// sound when giving love by clicking on Life
+let happySFX;
+
+// preload all the music and sounds
 function preload(){
+  ambianceRumble = loadSound(`assets/sounds/bg_rumble.wav`);
+  happySFX = loadSound(`assets/sounds/happy.wav`);
 }
+// create the p5 canvas and set the first state
 function setup() {
-  // Create the canvas
-  let canvas = createCanvas(600,500);
+  // Create the p5 canvas
+  let canvas = createCanvas(windowWidth, windowHeight);
   // Move the canvas within the HTML into the appropriate section
-  canvas.parent('p5js-canvas');
   currentState = new Life();
 }
 
+// call the current state animations and set the background
 function draw() {
   background(0);
   currentState.update();
-  // baby.update();
 };
 
-function keyPressed(){
+// call the key pressed function of the state the simulation is currently calling
+function keyPressed() {
   currentState.keyPressed();
 }
 
-function mousePressed(){
+// call the mouse pressed function of the state the simulation is currently calling
+function mousePressed() {
   currentState.mousePressed();
 }
 

@@ -1,4 +1,5 @@
 class Conception {
+// introduction animation before the game starts
   constructor(){
   }
 

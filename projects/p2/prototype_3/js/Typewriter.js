@@ -1,4 +1,4 @@
-// Typewriter
+// Typewriter by Pippin Barr
 // A class for typewriting text. Uses an interval to incrementally
 // add characters to a displayed text
 
@@ -58,8 +58,8 @@ class Typewriter {
   // Display the current display text at the correct location
   display() {
     push();
-    fill(255);
-    textFont(`Arial`);
+    fill(0);
+    textFont(`arial`);
     textSize(18);
     textAlign(LEFT, BOTTOM);
     text(this.displayText, this.x, this.y);

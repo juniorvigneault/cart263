@@ -1,4 +1,5 @@
 class Death {
+  // death state... nothing much is happening here yet
   constructor(){
   }
 
