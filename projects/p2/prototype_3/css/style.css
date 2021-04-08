@@ -3,7 +3,7 @@ body {
   margin: 0;
 }
 
-/* #ui {
+#ui {
   display: grid;
   grid-template-columns: 100px 100px;
   margin-top: 2rem;
@@ -12,4 +12,4 @@ body {
 }
 
 #p5js-canvas {
-} */
+}
