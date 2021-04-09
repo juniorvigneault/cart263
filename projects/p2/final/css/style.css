@@ -14,20 +14,32 @@ body {
 /* Some CSS grid styling to make the UI look less totally awful */
 #ui {
   display: grid;
-  grid-template-columns: 250px 250px;
+  grid-template-columns: 100px 100px 100px;
+  margin-top: 10px;
+  margin-left: 238px;
 }
 
 #progress_bars {
+  display: grid;
   transform: rotate(90deg);
-  position: absolute;
-  left: 300px;
-  bottom: 30px;
-  width: 200px;
+  grid-template-rows: 100px 100px 100px;
+  width: 100px;
+  height: 60px;
+  margin-left: 440px;
+  margin-top: 40px;
 }
 
+#baby_name2 {
+  display: : grid;
+  color: orange;
+}
 
 input {
   width: 70%;
   padding: 8px;
   margin: 30px;
+}
+
+#p5js-canvas {
+  display: grid;
 }

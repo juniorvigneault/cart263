@@ -24,13 +24,15 @@
 
   <!-- My script(s) -->
   <script src="js/Baby.js"></script>
+  <script src="js/Simulation.js"></script>
   <script src="js/script.js"></script>
 
 </head>
 
 <body>
   <!-- HTML would go here if needed. -->
-  <h1>DAY <span>1</span> </h>
+
+  <h1>DAY <span id="day">1</span> in the life of <span id="baby_name2"></span></h1>
 
     <!-- An element to relocate our p5 canvas to so we control its positioning -->
     <section id="p5js-canvas">
@@ -39,29 +41,24 @@
     <!-- Opening dialog box asking for baby name and color choice -->
     <div id="baby_name_box" title="Congratulations!">
       <p>
-        <span id="baby_name">Baby Name</span>
-        <input type="text" id="myInput">
-        <span id="color">color</span>
-        <input type="text" id="myInput2">
+        <span id="baby_name">You just had a baby! It's time to give it a name :</span>
+        <input type="text" id="nameInput">
       </p>
     </div>
 
+
+    <!-- progree bars indicating how much your baby needs things!! -->
+    <form id="progress_bars">
+      <div id="change_progressbar"></div>
+      <div id="play_progressbar"></div>
+      <div id="feed_progressbar"></div>
+    </form>
     <!-- Some UI elements at the bottom of canvas for taking care of your baby -->
     <form id="ui">
       <input id="feed" type="button" value="Feed">
       <input id="play" type="button" value="Play">
       <input id="change" type="button" value="Change">
     </form>
-    <!-- progree bars indicating how much your baby needs things!! -->
-    <form id="progress_bars">
-      <div id="feed_progressbar"></div>
-      <div id="play_progressbar"></div>
-      <div id="change_progressbar"></div>
-    </form>
-    <!-- The HTML content for our dialog box -->
-    <div id="popup">
-      <p></p>
-    </div>
 </body>
 
 </html>
