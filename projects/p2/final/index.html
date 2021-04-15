@@ -23,6 +23,7 @@
   <script src="js/libraries/hsluv-0.1.0.min.js"></script>
 
   <!-- My script(s) -->
+  <script src="js/Instructions.js"></script>
   <script src="js/Baby.js"></script>
   <script src="js/Simulation.js"></script>
   <script src="js/script.js"></script>
@@ -32,7 +33,7 @@
 <body>
   <!-- HTML would go here if needed. -->
 
-  <h1>DAY <span id="day">1</span> in the life of <span id="baby_name2"></span></h1>
+  <h1 id="day_in_life">DAY <span id="day">1</span> in the life of <span class="baby_name" id="name_top"></span></h1>
 
     <!-- An element to relocate our p5 canvas to so we control its positioning -->
     <section id="p5js-canvas">
@@ -41,8 +42,35 @@
     <!-- Opening dialog box asking for baby name and color choice -->
     <div id="baby_name_box" title="Congratulations!">
       <p>
-        <span id="baby_name">You just had a baby! It's time to give it a name :</span>
+        <span id="baby_born">You just had a baby! It's time to give it a name :</span>
         <input type="text" id="nameInput">
+      </p>
+    </div>
+    <!-- dialog box for first instructions -->
+    <div id="instructions" title="Taking care of your child">
+      <p>
+        <span id="baby_name1"><span class="baby_name">john</span> is 1 day old. As a parent, it is your duty to protect and take care your child.</span>
+      </p>
+      <p>
+        <span id="para2">Difficult decisions will have to be made, some generating consequences that may or may not burden your child for the rest of their life.</span>
+      </p>
+      <p>
+        <span id="para3">Welcome to the Parenting Simulator</span>
+      </p>
+    </div>
+
+    <!-- dialog box for simulation -->
+    <div id="play_added" title="You can now play with your child!">
+      <p>
+        <span id="play_added_text">Now that <span class="baby_name">john</span> is older, you can now play with them!</span>
+      </p>
+    </div>
+
+    <div id="question_1" title="Something came up!">
+      <p>
+        <span id="question_1_text">It's 2 a.m and <span class="baby_name">john</span> is crying everytime you leave their room and you have a very important business meeting tomorrow morning.</span>
+        <input id="bed" type="button" value="Bring baby in your bed">
+        <input id="wake" type="button" value="Continue waking up">
       </p>
     </div>
 
@@ -50,12 +78,9 @@
     <!-- progree bars indicating how much your baby needs things!! -->
     <form id="progress_bars">
       <div id="change_progressbar"></div>
+      <input id="feed" type="button" value="Feed">
       <div id="play_progressbar"></div>
       <div id="feed_progressbar"></div>
-    </form>
-    <!-- Some UI elements at the bottom of canvas for taking care of your baby -->
-    <form id="ui">
-      <input id="feed" type="button" value="Feed">
       <input id="play" type="button" value="Play">
       <input id="change" type="button" value="Change">
     </form>

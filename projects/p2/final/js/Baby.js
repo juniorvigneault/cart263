@@ -1,4 +1,6 @@
 class Baby {
+  // this is all the baby related stuff. It's appearance and how you can interact with it
+  // to change his appearance and attitude
   constructor() {
     this.x = 400;
     this.y = 300;
@@ -18,6 +20,8 @@ class Baby {
     this.angle = undefined;
   }
 
+// updates in the draw function of the script
+// displays the baby and makes it move accordingly to interactions
   update() {
     this.displayBaby()
     this.hunger();
@@ -26,44 +30,25 @@ class Baby {
     this.dirty();
   }
 
+// if the baby is dirty, it grows in size. Weird. It cannot be too big tho.
   dirty() {
     this.size = constrain(this.size, 100, 200);
     this.nameSize = constrain(this.nameSize, 32, 60);
     this.size = this.size + 0.05;
     this.nameSize = this.nameSize + 0.015;
-
-    $("#change_progressbar").progressbar({
-      value: map(this.size, 100, 200, 0, 100),
-      complete: function(event, ui) {
-
-      }
-    });
   }
-
+//
   hunger() {
     let hungerSpeed = random(0, 0.5);
     this.color.g = constrain(this.color.g, 0, 255);
     this.color.g = this.color.g + hungerSpeed;
-
-    $("#feed_progressbar").progressbar({
-      value: map(this.color.g, 0, 255, 0, 100),
-      complete: function(event, ui) {
-
-      }
-    });
-
   };
 
   bored() {
     let boreSpeed = random(0, 0.01);
     this.speed = this.speed + boreSpeed;
 
-    $("#play_progressbar").progressbar({
-      value: map(this.speed, 0, 20, 0, 100),
-      complete: function(event, ui) {
 
-      }
-    });
   }
 
   move() {
@@ -96,4 +81,20 @@ class Baby {
     text(this.name, this.x, this.y);
     pop();
   }
+
+  feed() {
+    this.color.g = this.color.g - 200;
+  }
+
+  play() {
+    this.speed = 0
+  }
+
+  change() {
+    this.size = 100;
+    this.nameSize = 32;
+  }
+
+  love() {}
+
 }

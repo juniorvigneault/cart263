@@ -1,46 +1,29 @@
-//
-let baby;
-let babyName;
+// Project 2 : Anything
+// Parent Simulator by Junior Vigneault
+// CART 263 / Prof : Pippin Barr
+// This is a parenting simulator project taking you along the incredible journey of taking care of your child
+// until they turn 18 years old. Desicions will have to be made, situations will have to be forgiven
+// and nothing you will do will make a difference (or will it?).
+
+// variables for the state
 let currentState;
 
-let days = 1;
+let babyName;
 
 function setup() {
   // Create the canvas
   let canvas = createCanvas(800, 600);
   // Move the canvas within the HTML into the appropriate section
   canvas.parent('p5js-canvas');
-  currentState = new Simulation();
+  currentState = new Instructions();
 }
 
 function draw() {
-  background(200);
+  background(0);
   currentState.update();
 };
 
 
 function keyPressed() {
-
-  // if (key === `f`) {
-  //   feed(baby);
-  //   console.log(`You fed the baby`);
-  // } else if (key === `p`) {
-  //   play(baby);
-  //   console.log(`You played with the baby`)
-  // } else if (key === `c`) {
-  //   change(baby);
-  //   console.log(`You changed the diaper of the baby`)
-  // } else if (key === `l`) {
-  //   love(baby);
-  //   console.log(`You gave love to the baby`)
-  // }
+  currentState.keyPressed();
 }
-
-// when feeding the baby, it returns to its original state (black)
-
-
-
-// // resizes the canvas
-// function windowResized() {
-//   resizeCanvas(windowWidth, windowHeight);
-// }

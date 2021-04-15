@@ -15,22 +15,17 @@ body {
 #ui {
   display: grid;
   grid-template-columns: 100px 100px 100px;
-  margin-top: 10px;
-  margin-left: 238px;
 }
 
 #progress_bars {
   display: grid;
-  transform: rotate(90deg);
-  grid-template-rows: 100px 100px 100px;
-  width: 100px;
-  height: 60px;
-  margin-left: 440px;
-  margin-top: 40px;
+  grid-template-rows: 40px 40px 40px;
+  width: 300px;
+  margin-top: 10px;
 }
 
-#baby_name2 {
-  display: : grid;
+#name_top {
+  display: grid;
   color: orange;
 }
 
@@ -42,4 +37,9 @@ input {
 
 #p5js-canvas {
   display: grid;
+}
+
+#instructions {
+  text-align: justify;
+  text-align: left;
 }
