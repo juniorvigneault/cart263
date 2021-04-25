@@ -10,12 +10,31 @@ let currentState;
 
 let babyName;
 
+let face;
+let stretchy;
+let x;
+let y;
+let h;
+let w;
+
+function preload() {
+  face = loadImage("assets/images/face.png")
+}
+
 function setup() {
+  noCursor();
   // Create the canvas
-  let canvas = createCanvas(800, 600);
+  let canvas = createCanvas(800,800);
   // Move the canvas within the HTML into the appropriate section
   canvas.parent('p5js-canvas');
   currentState = new Instructions();
+
+  $(document).bind('mousemove', function(e) {
+    $('.mycursor').css({
+      top: e.pageY + 2,
+      left: e.pageX -28
+    });
+  });
 }
 
 function draw() {
@@ -23,6 +42,9 @@ function draw() {
   currentState.update();
 };
 
+function mousePressed() {
+  currentState.mousePressed();
+}
 
 function keyPressed() {
   currentState.keyPressed();

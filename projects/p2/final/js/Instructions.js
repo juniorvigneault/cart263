@@ -7,9 +7,10 @@ class Instructions {
     $("#play_added").hide();
     $("#question_1").hide();
 
+
     $(`#baby_name_box`).dialog({
       buttons: {
-        "submit": function() {
+        "name": function() {
           $(this).dialog(`close`);
           babyName = $(`#nameInput`).val();
           $(".baby_name").text(babyName);
@@ -22,7 +23,6 @@ class Instructions {
         at: "center",
         of: window
       },
-      modal: true,
       height: 300,
       draggable: false,
       closeOnEscape: false,
@@ -30,7 +30,7 @@ class Instructions {
 
     $(`#instructions`).dialog({
       buttons: {
-        "submit": function() {
+        "ok": function() {
           $(this).dialog(`close`);
           currentState = new Simulation();
           $("#p5js-canvas").show();
@@ -46,8 +46,7 @@ class Instructions {
         of: window
       },
       autoOpen: false,
-      modal: true,
-      height: 400,
+      height: 300,
       draggable: false,
       closeOnEscape: false,
     });
@@ -60,6 +59,10 @@ class Instructions {
   }
 
   keyPressed(){
+
+  }
+
+  mousePressed(){
 
   }
 

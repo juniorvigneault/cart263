@@ -12,9 +12,9 @@ class Box1 {
     this.r = r *2;
     World.add(world, this.body);
     this.fill = {
-      r: random(0,250),
-      g: 100,
-      b: random(60,80)
+      // r: random(0,250),
+      // g: 100,
+      // b: random(60,80)
     }
     this.screenLimit = height + 200;
   }
@@ -28,10 +28,10 @@ class Box1 {
     let pos = this.body.position;
     let angle = this.body.angle;
     ellipseMode(CENTER);
-    noStroke();
+    // noStroke();
     translate(pos.x, pos.y);
     rotate(angle);
-    fillHsluv(this.fill.r, this.fill.g, this.fill.b)
+    fillHsluv(0)
     ellipse(0,0, this.r)
     pop();
   }

@@ -30,11 +30,11 @@ class Simulation {
     // dialog boxes
     $(`#play_added`).dialog({
       buttons: {
-        "submit": function() {
+        "ok": function() {
           $(this).dialog(`close`);
-          setTimeout(() => {
-            $("#question_1").dialog("open");
-          }, 3000);
+          // setTimeout(() => {
+          //   $("#question_1").dialog("open");
+          // }, 2000);
         }
       },
       resizable: false,
@@ -45,13 +45,21 @@ class Simulation {
       },
       autoOpen: false,
       modal: true,
-      height: 500,
+      height: 200,
       draggable: false,
       closeOnEscape: false,
     });
 
     // choice
     $(`#question_1`).dialog({
+      buttons: {
+        "Bring in your bed": function() {
+          $(this).dialog(`close`);
+        },
+        "Stay awake": function() {
+          $(this).dialog(`close`);
+        }
+      },
       resizable: false,
       position: {
         my: "center",
@@ -60,7 +68,8 @@ class Simulation {
       },
       autoOpen: false,
       modal: true,
-      height: 500,
+      height: 200,
+      width: 400,
       draggable: false,
       closeOnEscape: false,
     });
@@ -70,11 +79,11 @@ class Simulation {
 
     // set timeouts
     // Add play function
-    setTimeout(() => {
-      $("#play_progressbar").show();
-      $("#play").show();
-      $("#play_added").dialog("open");
-    }, 3000);
+    // setTimeout(() => {
+    //   $("#play_progressbar").show();
+    //   $("#play").show();
+    //   $("#play_added").dialog("open");
+    // }, 2000);
 
     // set timeout
 
@@ -82,6 +91,7 @@ class Simulation {
   }
 
   update() {
+    background(255);
     this.baby.update();
     if (frameCount % 90 === 0) {
       this.days = this.days + 1
@@ -119,5 +129,9 @@ class Simulation {
 
   keyPressed() {
 
+  }
+
+  mousePressed() {
+    this.baby.mousePressed();
   }
 }
