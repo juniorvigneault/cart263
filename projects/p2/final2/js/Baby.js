@@ -6,11 +6,7 @@ class Baby {
     this.y = 300;
     this.size = 100;
     this.name = `BABY`;
-    this.color = {
-      r: 255,
-      g: 255,
-      b: 255
-    };
+    this.color = 255
     this.nameColor = 0;
     this.nameSize = 32;
     this.vx = 0;
@@ -21,8 +17,8 @@ class Baby {
     this.wiggle = false;
     this.distance = true;
 
-     x = 0;
-     y = 0;
+    x = 0;
+    y = 0;
 
     stretchy = createSprite(400, 200, 10, 10);
 
@@ -30,15 +26,16 @@ class Baby {
       push();
       stroke(0);
       strokeWeight(2);
-      fill(255);
+      fill(this.color, this.color, this.color);
       rotate(radians(this.getDirection()));
       ellipse(x, y, 150 + this.getSpeed(), 150 - this.getSpeed())
-      pop();
 
-      image(face, this.deltaX * 4, this.deltaY * 4, 100,30);
+
+      pop();
+      image(face, this.deltaX * 3, this.deltaY * 3 );
     }
 
-    stretchy.maxSpeed = 7;
+    stretchy.maxSpeed = 6;
 
   }
 
@@ -73,9 +70,9 @@ class Baby {
   }
   //
   hunger() {
-    let hungerSpeed = random(0, 0.3);
-    this.color.g = constrain(this.color.g, 0, 255);
-    this.color.g = this.color.g + hungerSpeed;
+    // let hungerSpeed = random(0, 0.3);
+    // this.color.g = constrain(this.color.g, 0, 255);
+    // this.color.g = this.color.g + hungerSpeed;
   };
 
   bored() {
@@ -84,12 +81,14 @@ class Baby {
   }
 
   move() {
-      stretchy.velocity.x = (this.x - stretchy.position.x) / 10;
-      stretchy.velocity.y = (this.y - stretchy.position.y) / 10;
+    stretchy.velocity.x = (this.x - stretchy.position.x) / 10;
+    stretchy.velocity.y = (this.y - stretchy.position.y) / 10;
 
-      this.x = constrain(this.x, 4 + this.size / 2, width - 10 - this.size / 2);
-      this.y = constrain(this.y, 4 + this.size / 2, height - 10 - this.size / 2);
+    this.x = constrain(this.x, 4 + this.size / 2, width - 10 - this.size / 2);
+    this.y = constrain(this.y, 4 + this.size / 2, height - 10 - this.size / 2);
+    if (this.distance) {
 
+    }
     if (this.distance == false) {
       this.changeDirection = random(0, 0.9);
       // this.x = constrain(this.x, 4 + this.size / 2, width - 4 - this.size / 2);
@@ -99,9 +98,14 @@ class Baby {
         this.vx = random(-this.speed, this.speed);
         this.vy = random(-this.speed, this.speed);
       }
+
+      if (this.wiggle) {
+        x = x + random(-10, 10);
+      }
+
       this.x = this.x + this.vx;
       this.y = this.y + this.vy;
-      this.speed = 10;
+      this.speed = 7;
     }
   }
 
@@ -119,9 +123,7 @@ class Baby {
     pop();
   }
 
-  feed() {
-    this.color.g = this.color.g - 200;
-  }
+  feed() {}
 
   play() {
     this.speed = 0
@@ -135,16 +137,16 @@ class Baby {
   love() {}
 
   mousePressed() {
-    // if the distance between the mouse and Life
-    let d = dist(mouseX, mouseY, this.x, this.y)
-    if (d < this.size / 2) {
-      console.log(`I love u`);
-      // it wiggles!
-      this.wiggle = true;
-      // it stops wiggling after half a second
-      setTimeout(() => {
-        this.wiggle = false;
-      }, 500);
-    }
+    // // if the distance between the mouse and Life
+    // let d = dist(mouseX, mouseY, x, y)
+    // if (d < 100 / 2) {
+    //   console.log(`I love u`);
+    //   // it wiggles!
+    //   this.wiggle = true;
+    //   // it stops wiggling after half a second
+    //   setTimeout(() => {
+    //     this.wiggle = false;
+    //   }, 500);
+    // }
   }
 }

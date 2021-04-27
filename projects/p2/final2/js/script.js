@@ -14,20 +14,26 @@ let face;
 let stretchy;
 let x;
 let y;
+let x2;
+let y2;
 let h;
 let w;
+
+let babyEllipse;
+
+let bubble = [];
 
 function preload() {
   face = loadImage("assets/images/face.png")
 }
 
 function setup() {
-  noCursor();
   // Create the canvas
-  let canvas = createCanvas(800,800);
+  let canvas = createCanvas(750,750);
   // Move the canvas within the HTML into the appropriate section
   canvas.parent('p5js-canvas');
-  currentState = new Instructions();
+    currentState = new Simulation();
+  // currentState = new Instructions();
 
   $(document).bind('mousemove', function(e) {
     $('.mycursor').css({
@@ -38,7 +44,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  // background(0);
   currentState.update();
 };
 

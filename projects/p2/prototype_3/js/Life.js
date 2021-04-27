@@ -25,12 +25,13 @@ class Life {
   // acts like the draw function. Calls the function for the baby like move and displays the typewriter.
   update() {
     background(255);
+
+    // background(0,52,100);
+    baby.update();
     // display and move the wave
     for (let i = this.waves.length - 1; i >= 0; i--) {
       this.waves[i].update();
     }
-    // background(0,52,100);
-    baby.update();
     this.typewriter.display()
 
   }

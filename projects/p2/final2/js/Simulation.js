@@ -2,9 +2,22 @@ class Simulation {
   constructor() {
     this.start = false;
     this.days = 0;
+    this.wash = false;
 
     this.baby = new Baby();
 
+    this.waves = [];
+    this.fill = -100;
+
+
+    for (let i = 0; i < 1; i++) {
+      let wave = new Wave(width - 1000 - i * 330, height + this.fill, -3);
+      this.waves.push(wave);
+    }
+
+    for (let i = 0; i < 300; i++) {
+      bubble[i] = new Bubble();
+    }
 
     $(".baby_name").text(babyName);
 
@@ -87,19 +100,47 @@ class Simulation {
 
     // set timeout
 
+    //make apple draggable
+    $("#appleimg").one('mouseover', function(event){
+      $(this).draggable({
+      classes: {
+        "ui-draggable":"food-highlight"
+      }
+      })
+    });
 
+    $("#p5js-canvas").droppable({
+      classes: {
+        "ui-droppable-hover": "canvas-highlight"
+      },
+      drop: function(event, ui) {
+        ui.draggable.hide({
+          effect: 'pulsate'
+        })
+      },
+    })
   }
 
   update() {
     background(255);
-    this.baby.update();
+
+    if (this.wash) {
+      this.bubbles();
+      // display and move the wave
+      for (let i = this.waves.length - 1; i >= 0; i--) {
+        this.waves[i].update();
+      }
+    }
+
     if (frameCount % 90 === 0) {
       this.days = this.days + 1
       $("#day").text(this.days)
     }
+
     this.feedProgressBar();
     this.playProgressBar();
     this.changeProgressBar();
+    this.baby.update();
 
   }
 
@@ -125,6 +166,15 @@ class Simulation {
       disabled: true,
       complete: function(event, ui) {}
     });
+  }
+
+  bubbles() {
+    push();
+    for (let i = 0; i < 10; i++) {
+      bubble[i].display();
+      bubble[i].move();
+    }
+    pop();
   }
 
   keyPressed() {
