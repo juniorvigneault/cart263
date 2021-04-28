@@ -92,30 +92,33 @@ class Simulation {
 
     // set timeouts
     // Add play function
-    setTimeout(() => {
-      $("#play_added").dialog("open");
-    }, 2000);
+    // setTimeout(() => {
+    //   $("#play_progressbar").show();
+    //   $("#play").show();
+    //   $("#play_added").dialog("open");
+    // }, 2000);
 
     // set timeout
 
     //make apple draggable
-    $("#foodimg").one('mouseover', function(event){
-          $(this).draggable({
-            classes: {
-              "ui-draggable":"food-highlight"
-            },
-            revert: true
-          })
-        });
+    $("#appleimg").one('mouseover', function(event){
+      $(this).draggable({
+      classes: {
+        "ui-draggable":"food-highlight"
+      }
+      })
+    });
 
-        $("#p5js-canvas").droppable({
-          classes: {
-            "ui-droppable-hover": "canvas-highlight"
-          },
-          drop: function(event, ui) {
-            ui.draggable.effect(`pulsate`);
-          },
+    $("#p5js-canvas").droppable({
+      classes: {
+        "ui-droppable-hover": "canvas-highlight"
+      },
+      drop: function(event, ui) {
+        ui.draggable.hide({
+          effect: 'pulsate'
         })
+      },
+    })
   }
 
   update() {

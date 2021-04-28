@@ -36,7 +36,7 @@ function setup() {
   // create grounds
   // grounds.push(new Ground(400, 400, 600, 50, world, 0.3));
   // grounds.push(new Ground(700, 800, 600, 50, world, - 0.3));
-  grounds.push(new Ground(width/2, height, 250, 50, world, 0));
+  grounds.push(new Ground(width/2, height, 320, 50, world, 0));
   grounds.push(new Ground(0, height/2, 1000, 100, world, 1.5));
   grounds.push(new Ground(width, height/2, 1000, 100, world, - 1.5));
 
