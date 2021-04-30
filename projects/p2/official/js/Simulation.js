@@ -252,7 +252,7 @@ class Simulation {
     });
   }
 
-  // display and move bubbles 
+  // display and move bubbles
   bubbles() {
     push();
     for (let i = 0; i < this.numBubbles; i++) {

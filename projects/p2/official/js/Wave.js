@@ -7,14 +7,16 @@ class Wave {
     this.angle = angle;
     this.offset = 0;
     this.color = color;
+    this.strokeWeight = 2
   }
 
+// display black wave in tank 
   update(color){
     push();
 
     noStroke();
     fill(color)
-    strokeWeight(2);
+    strokeWeight(this.strokeWeight);
     translate(this.x,this.y);
     rotate(radians(this.angle))
 

@@ -9,11 +9,13 @@ class Baby {
     this.color = 255;
     this.vx = 0;
     this.vy = 0;
-    this.speed = 1;
+    this.speed = 7;
     this.changeDirection = undefined;
     this.angle = undefined;
     this.wiggle = false;
     this.distance = true;
+    this.canvasOffset = 40;
+    this.mouseDistance = 100;
 
     x = 0;
     y = 0;
@@ -27,7 +29,7 @@ class Baby {
       //proportionally to its speed
       //this.deltaX and this.deltaY are the position increment
       //since the last frame, move the face image toward the direction
-      image(face, this.deltaX * 3, this.deltaY * 3);
+      image(face, this.deltaX * 4, this.deltaY * 4);
       push();
       stroke(0);
       strokeWeight(2);
@@ -39,7 +41,6 @@ class Baby {
       pop();
     }
   }
-
   // updates in the draw function of the script
   // displays the baby and makes it move accordingly to interactions
   // display the alien move them randomly (Taken from Pippin Barr CART 253 Example)
@@ -49,7 +50,7 @@ class Baby {
     drawSprites();
     // if distance from the mouse is under 100 then the alien stops moving
     let d = dist(this.x, this.y, mouseX, mouseY);
-    if (d < 100) {
+    if (d < this.mouseDistance) {
       this.distance = true;
     } else {
       this.distance = false;
@@ -61,8 +62,8 @@ class Baby {
     stretchy.velocity.x = (this.x - stretchy.position.x) / 10;
     stretchy.velocity.y = (this.y - stretchy.position.y) / 10;
     // constrain the position of the alien in the canvas
-    this.x = constrain(this.x, 40 + this.size / 2, width - 40 - this.size / 2);
-    this.y = constrain(this.y, 40 + this.size / 2, height - 40 - this.size / 2);
+    this.x = constrain(this.x, this.canvasOffset + this.size / 2, width - this.canvasOffset - this.size / 2);
+    this.y = constrain(this.y, this.canvasOffset + this.size / 2, height - this.canvasOffset - this.size / 2);
 
     // move randomly if distance between mouse and alien is above 100
     if (this.distance == false) {
