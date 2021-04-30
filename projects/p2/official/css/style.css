@@ -1,0 +1,146 @@
+body {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  /* Set up the grid and justify/align to center */
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  /* Body is the height of the viewport */
+  overflow: hidden;
+  /* Hide anything that goes off the window size */
+
+}
+
+.ending {
+  background-color: black;
+}
+
+#congradulations {
+  color: white;
+  font-size: 80px;
+  text-align: center;
+}
+
+/* Some CSS grid styling to make the UI look less totally awful */
+
+#food-pill {
+display: grid;
+position: fixed;
+margin-top: 700px;
+margin-left: 1000px;
+}
+
+#clean {
+display: grid;
+position: fixed;
+margin-top: 650px;
+margin-left: 830px;
+width: 100px;
+}
+
+#play {
+display: grid;
+position: fixed;
+margin-top: 700px;
+margin-left: 830px;
+width: 100px;
+}
+
+
+.canvas-highlight {
+  border-style: dotted;
+  border-width: 10px;
+  border-color: blue;
+}
+
+.food-highlight {
+  cursor: grab;
+}
+
+#food-title {
+  margin-left: 27px;
+  font-size: 12;
+  font-family: helvetica;
+}
+
+
+#clean-title {
+  margin-left: 27px;
+  font-size: 12;
+  font-family: helvetica;
+}
+
+
+#play-title {
+  margin-left: 27px;
+  font-size: 12;
+  font-family: helvetica;
+}
+
+
+#progress_bars {
+  display: grid;
+  position: fixed;
+  font-family: helvetica;
+  grid-template-rows: 50px 50px 50px 50px 50px;
+  margin-left: 900px;
+  margin-top: 200px;
+  width: 300px;
+}
+
+input {
+  width: 70%;
+  padding: 7px;
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+/* #feed {
+  margin-top: -20px;
+  margin-left: -110px;
+  width: 100px;
+  height: 30px;
+}
+
+#change {
+  margin-top: -20px;
+  margin-left: -110px;
+  width: 100px;
+  height: 30px;
+} */
+
+h1 {
+  margin-top: +810px;
+  font-family: helvetica;
+  font-style: italic;
+  font-size: 28px;
+  position: fixed;
+  margin-left: 60px;
+}
+
+#day{
+}
+
+#nameInput {
+  margin-top: 20px;
+}
+
+#name_top {
+
+font-size: 32px;
+}
+
+#p5js-canvas {
+  position: absolute;
+  /* border-style: dashed; */
+  border-width: 2px;
+  margin-top:60px;
+  margin-left: 60px;
+
+}
+
+#instructions {
+  text-align: justify;
+  text-align: left;
+}

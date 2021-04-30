@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Prototype_3</title>
+
+  <!-- CSS stylesheet(s) -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" /> -->
+
+  <!-- Library script(s) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  <!-- <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script> -->
+  <!-- <script src="js/libraries/matter.min.js"></script> -->
+  <script src="js/libraries/p5.min.js"></script>
+  <script src="js/libraries/p5.play.js"></script>
+  <script src="js/libraries/p5.sound.min.js"></script>
+  <script src="js/libraries/hsluv-0.1.0.min.js"></script>
+
+  <!-- My script(s) -->
+  <script src="js/Instructions.js"></script>
+  <script src="js/Baby.js"></script>
+  <script src="js/Wave.js"></script>
+  <script src="js/Bubbles.js"></script>
+  <script src="js/Death.js"></script>
+  <script src="js/ProgressBar.js"></script>
+  <script src="js/Simulation.js"></script>
+  <script src="js/script.js"></script>
+
+</head>
+
+<body>
+  <!-- HTML would go here if needed. -->
+
+  <h1 id="day_in_life"><span id="day">6570</span> days before <span class="baby_name" id="name_top"> </span> turns 18</h1>
+
+  <!-- An element to relocate our p5 canvas to so we control its positioning -->
+  <section id="p5js-canvas">
+    <div id="babyellipse"></div>
+  </section>
+
+  <!-- Opening dialog box asking for baby name and color choice -->
+  <span class="dialog-boxes">
+  <div id="baby_name_box" title="Congratulations!">
+    <p>
+      <span id="baby_born">You just had a baby! It's time to give it a name :</span>
+      <input type="text" id="nameInput">
+    </p>
+  </div>
+  <!-- dialog box for first instructions -->
+  <div id="instructions" title="Taking care of your child">
+    <p>
+      <span id="baby_name1"><span class="baby_name">john</span> is 1 day old. As a parent, it is your duty to protect and take care your child.</span>
+    </p>
+    <p>
+      <span id="para3">Welcome to the Parenting Simulator</span>
+    </p>
+  </div>
+
+  <!-- dialog box for simulation -->
+  <div id="play_added" title="Play with your child!">
+    <p>
+      <span id="play_added_text">Now that <span class="baby_name">john</span> is older, you can now play with them!</span>
+    </p>
+  </div>
+
+  <div id="question_1" title="Something came up!">
+    <p>
+      <span id="question_1_text">It's 2 a.m and <span class="baby_name">john</span> is crying everytime you leave their room and you have a very important business meeting tomorrow morning.</span>
+    </p>
+  </div>
+</span>
+
+
+  <!-- progree bars indicating how much your baby needs things!! -->
+  <form id="progress_bars">
+    <div id="hunger_progressbar"></div>
+    <span id="hunger-title"> Hunger </span>
+
+    <div id="sadness_progressbar"></div>
+    <span id="sadness-title"> Sadness </span>
+
+      <div id="dirtyness_progressbar"></div>
+      <span id="dirtyness-title"> Dirtyness </span>
+
+  </form>
+
+
+  <div id="food-pill">
+    <span id="foodimg"><img src="assets/images/food.png"></span>
+
+    <span id="food-title"> Food </span>
+
+  </div>
+
+  <div id="clean">
+    <input id="clean-button" type="button" value="Wash">
+  </div>
+
+  <div id="play">
+    <input id="play-button" type="button" value="Play">
+  </div>
+
+  <div id="congradulations"> Congratulations! <span class="baby_name">john</span> has grown into a beautiful alien.</div> 
+
+</html>
